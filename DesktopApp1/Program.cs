@@ -13,10 +13,15 @@ namespace DesktopApp1
         /// </summary>
         [STAThread]
         static void Main()
+            //HEJ
+
+
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            Console.WriteLine("Hej Jakob");
         }
     }
 }
