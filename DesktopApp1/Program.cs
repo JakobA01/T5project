@@ -22,6 +22,8 @@ namespace DesktopApp1
             Application.Run(new Form1());
 
             Console.WriteLine("Hej Jakob");
+
+            //HEJ
         }
     }
 }
