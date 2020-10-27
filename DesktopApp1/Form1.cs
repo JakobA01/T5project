@@ -15,6 +15,8 @@ namespace DesktopApp1
 {
     public partial class Form1 : Form
     {
+        Trainer currentTrainer;
+        Pokémon currentPokemon;
         Controller controller = new Controller();
         public Form1()
         {
@@ -53,13 +55,14 @@ namespace DesktopApp1
 
         private void ButtonTestTrainer_Click(object sender, EventArgs e)
         {
-            FormTrainer formTrainer = new FormTrainer();
+            FormTrainer formTrainer = new FormTrainer(this);
             formTrainer.ShowDialog();
             
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
+            UpdateWindowOpen();
         }
 
         private void ButtonRemove_Click(object sender, EventArgs e)
@@ -114,6 +117,46 @@ namespace DesktopApp1
             comboBoxTrainer.DataSource = controller.FindAllTrainers();
             comboBoxTrainer.DisplayMember = "tName";
             comboBoxTrainer.ValueMember = "tId";
+        }
+
+
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            UpdateWindowOpen();
+        }
+
+        private void DataGridView_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+        private void UpdateWindowOpen()
+        {
+            int pk;
+            string type;
+            if (dataGridView.ColumnCount > 3)
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells[3].Value.ToString());
+                currentPokemon = controller.FindPokemon(pk);
+                FormPokemon fp = new FormPokemon(this);
+                fp.textBoxNameFP.Text = currentPokemon.pName;
+                fp.textBoxNicknameFP.Text = currentPokemon.nickname;
+                fp.textBoxTypeFP.Text = currentPokemon.pType;
+                fp.numericUpDownLevelFP.Value = currentPokemon.pLevel;
+                fp.textBoxTrainerId.Text = controller.FindTrainerFromPokemon(pk);
+                fp.ShowDialog();
+            }
+            else
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells[1].Value.ToString());
+                currentTrainer = controller.FindTrainer(pk);
+                FormTrainer ft = new FormTrainer(this);
+                ft.textBoxTrainerIdFT.Text = currentTrainer.tId.ToString();
+                ft.textBoxNameFT.Text = currentTrainer.tName;
+                ft.numericUpDownNbrBadgesFT.Value = currentTrainer.nbrOfBadges;
+                ft.dataGridView1.DataSource = controller.FindPokemonsTrainer(pk);
+
+                ft.ShowDialog();
+            }
         }
     }
 }

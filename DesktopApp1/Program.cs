@@ -19,10 +19,10 @@ namespace DesktopApp1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             DAL dal = new DAL();
-            //Controller controller = new Controller();
+            Controller controller = new Controller();
             //controller.CreatePokemon("test", "tgs", 1, "fdsfs", 4);
             //dal.CreateTrainer("Kim", 8);
-            dal.CreatePokemon("Raichu", "rasse", 3, "Electric", 2);
+            //dal.CreatePokemon("Raichu", "rasse", 3, "Electric", 2);
             Console.WriteLine("HEEEEEEEEEEEEEEEEEEEEEEEEEEEJ");
         }
     }

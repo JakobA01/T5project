@@ -12,9 +12,11 @@ namespace DesktopApp1
 {
     public partial class FormTrainer : Form
     {
-        public FormTrainer()
+        Form1 form;
+        public FormTrainer(Form1 form1)
         {
             InitializeComponent();
+            form = form1;
         }
 
         private void TextBoxNickname_TextChanged(object sender, EventArgs e)
