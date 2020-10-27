@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pokémon">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="50" />
+          <Property Name="pLevel" Type="int" Nullable="false" />
+          <Property Name="pId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pType" Type="varchar" MaxLength="50" />
+          <Property Name="tId" Type="int" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="tId" />
+          </Key>
+          <Property Name="tName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nbrOfBadges" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="pokémon_fk_tId">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pokémon" Type="Self.Pokémon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="tId" />
+            </Principal>
+            <Dependent Role="Pokémon">
+              <PropertyRef Name="tId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="create_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pName" Type="varchar" Mode="In" />
+          <Parameter Name="nickName" Type="varchar" Mode="In" />
+          <Parameter Name="pLevel" Type="int" Mode="In" />
+          <Parameter Name="pType" Type="varchar" Mode="In" />
+          <Parameter Name="tId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="create_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tName" Type="varchar" Mode="In" />
+          <Parameter Name="nbrOfBadges" Type="int" Mode="In" />
+        </Function>
+        <Function Name="delete_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="delete_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="read_all_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="read_all_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="read_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="read_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="update_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pName" Type="varchar" Mode="In" />
+          <Parameter Name="nickName" Type="varchar" Mode="In" />
+          <Parameter Name="pLevel" Type="int" Mode="In" />
+          <Parameter Name="pType" Type="varchar" Mode="In" />
+          <Parameter Name="tId" Type="int" Mode="In" />
+          <Parameter Name="pId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="update_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tName" Type="varchar" Mode="In" />
+          <Parameter Name="nbrOfBadges" Type="int" Mode="In" />
+          <Parameter Name="tId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProjectModelStoreContainer">
+          <EntitySet Name="Pokémon" EntityType="Self.Pokémon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="pokémon_fk_tId" Association="Self.pokémon_fk_tId">
+            <End Role="Trainer" EntitySet="Trainer" />
+            <End Role="Pokémon" EntitySet="Pokémon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pokémon">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pLevel" Type="Int32" Nullable="false" />
+          <Property Name="pId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tId" Type="Int32" />
+          <NavigationProperty Name="Trainer" Relationship="Self.pokémon_fk_tId" FromRole="Pokémon" ToRole="Trainer" />
+        </EntityType>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="tId" />
+          </Key>
+          <Property Name="tName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nbrOfBadges" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pokémon" Relationship="Self.pokémon_fk_tId" FromRole="Trainer" ToRole="Pokémon" />
+        </EntityType>
+        <Association Name="pokémon_fk_tId">
+          <End Role="Trainer" Type="Self.Trainer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pokémon" Type="Self.Pokémon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainer">
+              <PropertyRef Name="tId" />
+            </Principal>
+            <Dependent Role="Pokémon">
+              <PropertyRef Name="tId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pokémon" EntityType="Self.Pokémon" />
+          <EntitySet Name="Trainers" EntityType="Self.Trainer" />
+          <AssociationSet Name="pokémon_fk_tId" Association="Self.pokémon_fk_tId">
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="Pokémon" EntitySet="Pokémon" />
+          </AssociationSet>
+          <FunctionImport Name="create_pokémon">
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="nickName" Mode="In" Type="String" />
+            <Parameter Name="pLevel" Mode="In" Type="Int32" />
+            <Parameter Name="pType" Mode="In" Type="String" />
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="create_trainer">
+            <Parameter Name="tName" Mode="In" Type="String" />
+            <Parameter Name="nbrOfBadges" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="delete_pokémon">
+            <Parameter Name="pId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="delete_trainer">
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="read_all_pokémon" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)" />
+          <FunctionImport Name="read_all_trainer" EntitySet="Trainers" ReturnType="Collection(ProjectModel.Trainer)" />
+          <FunctionImport Name="read_pokémon" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)">
+            <Parameter Name="pId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="read_trainer" EntitySet="Trainers" ReturnType="Collection(ProjectModel.Trainer)">
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="update_pokémon">
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="nickName" Mode="In" Type="String" />
+            <Parameter Name="pLevel" Mode="In" Type="Int32" />
+            <Parameter Name="pType" Mode="In" Type="String" />
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+            <Parameter Name="pId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="update_trainer">
+            <Parameter Name="tName" Mode="In" Type="String" />
+            <Parameter Name="nbrOfBadges" Mode="In" Type="Int32" />
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="read_all_pokémon_Result">
+          <Property Type="String" Name="pName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="pLevel" Nullable="false" />
+          <Property Type="Int32" Name="pId" Nullable="false" />
+          <Property Type="String" Name="pType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="tId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="read_all_trainer_Result">
+          <Property Type="String" Name="tName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="tId" Nullable="false" />
+          <Property Type="Int32" Name="nbrOfBadges" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="read_pokémon_Result">
+          <Property Type="String" Name="pName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="pLevel" Nullable="false" />
+          <Property Type="Int32" Name="pId" Nullable="false" />
+          <Property Type="String" Name="pType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="tId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="read_trainer_Result">
+          <Property Type="String" Name="tName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="tId" Nullable="false" />
+          <Property Type="Int32" Name="nbrOfBadges" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectModelStoreContainer" CdmEntityContainer="ProjectEntities">
+          <EntitySetMapping Name="Pokémon">
+            <EntityTypeMapping TypeName="ProjectModel.Pokémon">
+              <MappingFragment StoreEntitySet="Pokémon">
+                <ScalarProperty Name="pName" ColumnName="pName" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="pLevel" ColumnName="pLevel" />
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="pType" ColumnName="pType" />
+                <ScalarProperty Name="tId" ColumnName="tId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainers">
+            <EntityTypeMapping TypeName="ProjectModel.Trainer">
+              <MappingFragment StoreEntitySet="Trainer">
+                <ScalarProperty Name="tName" ColumnName="tName" />
+                <ScalarProperty Name="tId" ColumnName="tId" />
+                <ScalarProperty Name="nbrOfBadges" ColumnName="nbrOfBadges" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="create_pokémon" FunctionName="ProjectModel.Store.create_pokémon" />
+          <FunctionImportMapping FunctionImportName="create_trainer" FunctionName="ProjectModel.Store.create_trainer" />
+          <FunctionImportMapping FunctionImportName="delete_pokémon" FunctionName="ProjectModel.Store.delete_pokémon" />
+          <FunctionImportMapping FunctionImportName="delete_trainer" FunctionName="ProjectModel.Store.delete_trainer" />
+          <FunctionImportMapping FunctionImportName="read_all_pokémon" FunctionName="ProjectModel.Store.read_all_pokémon">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="read_all_trainer" FunctionName="ProjectModel.Store.read_all_trainer">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="read_pokémon" FunctionName="ProjectModel.Store.read_pokémon">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="read_trainer" FunctionName="ProjectModel.Store.read_trainer">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="update_pokémon" FunctionName="ProjectModel.Store.update_pokémon" />
+          <FunctionImportMapping FunctionImportName="update_trainer" FunctionName="ProjectModel.Store.update_trainer" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
