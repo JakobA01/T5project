@@ -11,82 +11,120 @@ namespace DesktopApp1
     class DAL
     {
         //private readonly string connectionString = "Server=(local);Database=Project;Integrated security=true";
-
+        ErrorHandling error = new ErrorHandling();
+        ProjectEntities projectEntities = new ProjectEntities();
         public void CreateTrainer(string tName, int nbrOfBadges)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 projectEntities.create_trainer(tName, nbrOfBadges);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public void CreatePokemon (string pName, string nickName, int pLevel, string pType, int? tId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
-            {
+            try
+            {                
                 projectEntities.create_pokémon(pName, nickName, pLevel, pType, tId);
-            }      
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }            
         }
         public void UpdatePokemon(string pName, string nickName, int pId, int pLevel, string pType, int? tId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 projectEntities.update_pokémon(pName, nickName, pLevel, pType, tId, pId);
             }
-        }
-        public void UpdateTrainer(string tName, int tId, int nbrOfBadges)
-        {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            catch (Exception e)
             {
-                projectEntities.update_trainer(tName, tId, nbrOfBadges);
+                throw e;
+            }
+        }
+        public void UpdateTrainer(string tName, int nbrOfBadges, int tId)
+        {
+            try
+            {
+                projectEntities.update_trainer(tName, nbrOfBadges, tId);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public List<Pokémon> ReadPokemonsTrainer(int tId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 return projectEntities.read_pokemon_trainer(tId).ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public void DeleteTrainer(int tId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 projectEntities.delete_trainer(tId);
             }
-        }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }           
         public void DeletePokemon(int pId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 projectEntities.delete_pokémon(pId);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public List<Trainer> ReadTrainer(int tId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 return projectEntities.read_trainer(tId).ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public List<Pokémon> ReadPokemon(int pId)
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 return projectEntities.read_pokémon(pId).ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
         public List<Pokémon> ReadAllPokemon()
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
-            {
-                return projectEntities.read_all_pokémon().ToList();
-            }
+            return projectEntities.read_all_pokémon().ToList();
         }
         public List<Trainer> ReadAllTrainer()
         {
-            using (ProjectEntities projectEntities = new ProjectEntities())
+            try
             {
                 return projectEntities.read_all_trainer().ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
     }

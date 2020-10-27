@@ -3,36 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DesktopApp1
 {
     class Controller
     {
         DAL dal = new DAL();
-
+        ErrorHandling error = new ErrorHandling();
         public Trainer FindTrainer(int tId)
         {
-            List<Trainer> trainers = dal.ReadTrainer(tId);
-            Trainer trainer = new Trainer();
-            foreach (Trainer t in trainers)
+            try
             {
-                trainer = t;
+                List<Trainer> trainers = dal.ReadTrainer(tId);
+                Trainer trainer = new Trainer();
+                foreach (Trainer t in trainers)
+                {
+                    trainer = t;
+                }
+                return trainer;
             }
-            return trainer;
+            catch (Exception e)
+            {
+                throw e;
+            }           
         }
         public Pokémon FindPokemon(int pId)
         {
-            List<Pokémon> pokemons = dal.ReadPokemon(pId);
-            Pokémon pokemon = new Pokémon();
-            foreach (Pokémon p in pokemons)
+            try
             {
-                pokemon = p;
+                List<Pokémon> pokemons = dal.ReadPokemon(pId);
+                Pokémon pokemon = new Pokémon();
+                foreach (Pokémon p in pokemons)
+                {
+                    pokemon = p;
+                }
+                return pokemon;
             }
-            return pokemon;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public List<Pokémon> FindAllPokemons()
         {
-            return dal.ReadAllPokemon().ToList();
+            try
+            {
+                return dal.ReadAllPokemon().ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public List<Trainer> FindAllTrainers()
         {
@@ -40,31 +63,80 @@ namespace DesktopApp1
         }
         public void CreatePokemon(string pName, string nickName, int pLevel, string pType, int? tId)
         {
-            dal.CreatePokemon(pName, nickName, pLevel, pType, tId);
+            try
+            {
+                dal.CreatePokemon(pName, nickName, pLevel, pType, tId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
-        public void createTrainer(string tName, int nbrOfBadges)
+        public void CreateTrainer(string tName, int nbrOfBadges)
         {
-            dal.CreateTrainer(tName, nbrOfBadges);
+            try
+            {
+                dal.CreateTrainer(tName, nbrOfBadges);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }           
         }
         public List<Pokémon> FindPokemonsTrainer(int tId)
         {
-            return dal.ReadPokemonsTrainer(tId).ToList();
+            try
+            {
+                return dal.ReadPokemonsTrainer(tId).ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public void UpdatePokemon(string pName, string nickName, int pId, int pLevel, string pType, int? tId)
         {
-            dal.UpdatePokemon(pName, nickName, pId, pLevel, pType, tId);
+            try
+            {
+                dal.UpdatePokemon(pName, nickName, pId, pLevel, pType, tId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
-        public void UpdateTrainer(string tName, int tId, int nbrOfBadges)
+        public void UpdateTrainer(string tName, int nbrOfBadges, int tId)
         {
-            dal.UpdateTrainer(tName, tId, nbrOfBadges);
+            try
+            {
+                dal.UpdateTrainer(tName, nbrOfBadges, tId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public void DeleteTrainer(int tId)
         {
-            dal.DeleteTrainer(tId);
+            try
+            {
+                dal.DeleteTrainer(tId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public void DeletePokemon(int pId)
         {
-            dal.DeletePokemon(pId);
+            try
+            {
+                dal.DeletePokemon(pId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
