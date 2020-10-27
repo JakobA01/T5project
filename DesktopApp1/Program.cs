@@ -20,15 +20,10 @@ namespace DesktopApp1
             Application.Run(new Form1());
             DAL dal = new DAL();
             //dal.CreateTrainer("Kim", 8);
-            dal.UpdatePokemon("Pikachu", "Pikapikapika", 2, 30, "Grass", null);
-            dal.UpdateTrainer("Simon Olow", 2, 3);
-            DataTable dt = dal.ReadAllPokemons();
-            foreach(DataRow dr in dt.Rows)
+            List<Trainer> trainer = dal.ReadTrainer(31);
+            foreach(Trainer t in trainer)
             {
-                foreach(var item in dr.ItemArray)
-                {
-                    Console.WriteLine(item);
-                }
+                Console.WriteLine(t.tName);
             }
         }
     }
