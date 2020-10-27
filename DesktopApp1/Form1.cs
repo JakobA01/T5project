@@ -31,5 +31,47 @@ namespace DesktopApp1
         {
             MessageBox.Show("Thanks!");
         }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComboBoxTId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonTestTrainer_Click(object sender, EventArgs e)
+        {
+            FormTrainer formTrainer = new FormTrainer();
+            formTrainer.ShowDialog();
+            
+        }
+
+        private void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
