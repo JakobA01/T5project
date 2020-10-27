@@ -19,8 +19,8 @@ namespace DesktopApp1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             DAL dal = new DAL();
-            //dal.CreateTrainer("Kim", 8);
-            List<Trainer> trainer = dal.ReadTrainer(31);
+            dal.CreateTrainer("Kim", 2);
+            List<Trainer> trainer = dal.ReadTrainer(1);
             foreach(Trainer t in trainer)
             {
                 Console.WriteLine(t.tName);
