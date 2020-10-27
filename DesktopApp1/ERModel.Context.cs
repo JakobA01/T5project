@@ -20,6 +20,7 @@ namespace DesktopApp1
         public ProjectEntities()
             : base("name=ProjectEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
