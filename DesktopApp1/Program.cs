@@ -20,11 +20,7 @@ namespace DesktopApp1
             Application.Run(new Form1());
             DAL dal = new DAL();
             //dal.CreateTrainer("Kim", 8);
-            List<Trainer> trainer = dal.ReadTrainer(31);
-            foreach(Trainer t in trainer)
-            {
-                Console.WriteLine(t.tName);
-            }
+            dal.CreatePokemon("Raichu", "rasse", 3, "Electric", 2);
         }
     }
 }

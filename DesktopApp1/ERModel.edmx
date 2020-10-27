@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Pokémon">
           <Key>
             <PropertyRef Name="pId" />
@@ -60,6 +60,9 @@
         <Function Name="read_pokémon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pId" Type="int" Mode="In" />
         </Function>
+        <Function Name="read_pokemon_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tId" Type="int" Mode="In" />
+        </Function>
         <Function Name="read_trainer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tId" Type="int" Mode="In" />
         </Function>
@@ -84,8 +87,7 @@
             <End Role="Pokémon" EntitySet="Pokémon" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -143,18 +145,18 @@
             <Parameter Name="nbrOfBadges" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delete_pokémon">
-            <Parameter Name="pId" Mode="In" Type="Int32" />
+          <Parameter Name="pId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="delete_trainer">
-            <Parameter Name="tId" Mode="In" Type="Int32" />
+          <Parameter Name="tId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="read_all_pokémon" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)" />
           <FunctionImport Name="read_all_trainer" EntitySet="Trainers" ReturnType="Collection(ProjectModel.Trainer)" />
           <FunctionImport Name="read_pokémon" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)">
-            <Parameter Name="pId" Mode="In" Type="Int32" />
+          <Parameter Name="pId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="read_trainer" EntitySet="Trainers" ReturnType="Collection(ProjectModel.Trainer)">
-            <Parameter Name="tId" Mode="In" Type="Int32" />
+          <Parameter Name="tId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="update_pokémon">
             <Parameter Name="pName" Mode="In" Type="String" />
@@ -167,6 +169,9 @@
           <FunctionImport Name="update_trainer">
             <Parameter Name="tName" Mode="In" Type="String" />
             <Parameter Name="nbrOfBadges" Mode="In" Type="Int32" />
+            <Parameter Name="tId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="read_pokemon_trainer" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)">
             <Parameter Name="tId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -195,6 +200,14 @@
           <Property Type="String" Name="tName" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="tId" Nullable="false" />
           <Property Type="Int32" Name="nbrOfBadges" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="read_pokemon_trainer_Result">
+          <Property Type="String" Name="pName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="pLevel" Nullable="false" />
+          <Property Type="Int32" Name="pId" Nullable="false" />
+          <Property Type="String" Name="pType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="tId" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -237,6 +250,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="update_pokémon" FunctionName="ProjectModel.Store.update_pokémon" />
           <FunctionImportMapping FunctionImportName="update_trainer" FunctionName="ProjectModel.Store.update_trainer" />
+          <FunctionImportMapping FunctionImportName="read_pokemon_trainer" FunctionName="ProjectModel.Store.read_pokemon_trainer">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
