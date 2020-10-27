@@ -29,41 +29,54 @@ namespace DesktopApp1
         private void InitializeComponent()
         {
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxType = new System.Windows.Forms.TextBox();
             this.textBoxNickname = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioBtnPokemon = new System.Windows.Forms.RadioButton();
+            this.radioBtnTrainer = new System.Windows.Forms.RadioButton();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.numericUpDownLevel = new System.Windows.Forms.NumericUpDown();
             this.comboBoxTrainer = new System.Windows.Forms.ComboBox();
             this.buttonTestTrainer = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.radioBtnSearchTrainer = new System.Windows.Forms.RadioButton();
+            this.radioBtnSearchPokemon = new System.Windows.Forms.RadioButton();
+            this.panelRadioBtnSearch = new System.Windows.Forms.Panel();
+            this.panelRadioBtn = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevel)).BeginInit();
+            this.panelRadioBtnSearch.SuspendLayout();
+            this.panelRadioBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(784, 213);
+            this.buttonSearch.Location = new System.Drawing.Point(789, 200);
             this.buttonSearch.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(97, 28);
+            this.buttonSearch.Size = new System.Drawing.Size(97, 39);
             this.buttonSearch.TabIndex = 2;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(32, 244);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(853, 263);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(32, 244);
+            this.dataGridView.MultiSelect = false;
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(853, 263);
+            this.dataGridView.TabIndex = 3;
             // 
             // textBoxName
             // 
@@ -92,32 +105,32 @@ namespace DesktopApp1
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(569, 218);
+            this.textBox5.Location = new System.Drawing.Point(619, 200);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(210, 20);
+            this.textBox5.Size = new System.Drawing.Size(160, 20);
             this.textBox5.TabIndex = 8;
             // 
-            // radioButton1
+            // radioBtnPokemon
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(53, 188);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(70, 17);
-            this.radioButton1.TabIndex = 9;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Pokémon";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioBtnPokemon.AutoSize = true;
+            this.radioBtnPokemon.Checked = true;
+            this.radioBtnPokemon.Location = new System.Drawing.Point(16, 3);
+            this.radioBtnPokemon.Name = "radioBtnPokemon";
+            this.radioBtnPokemon.Size = new System.Drawing.Size(70, 17);
+            this.radioBtnPokemon.TabIndex = 9;
+            this.radioBtnPokemon.TabStop = true;
+            this.radioBtnPokemon.Text = "Pokémon";
+            this.radioBtnPokemon.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioBtnTrainer
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(141, 188);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(58, 17);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Trainer";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioBtnTrainer.AutoSize = true;
+            this.radioBtnTrainer.Location = new System.Drawing.Point(104, 3);
+            this.radioBtnTrainer.Name = "radioBtnTrainer";
+            this.radioBtnTrainer.Size = new System.Drawing.Size(58, 17);
+            this.radioBtnTrainer.TabIndex = 10;
+            this.radioBtnTrainer.Text = "Trainer";
+            this.radioBtnTrainer.UseVisualStyleBackColor = true;
             // 
             // buttonAdd
             // 
@@ -158,7 +171,7 @@ namespace DesktopApp1
             // 
             // buttonTestTrainer
             // 
-            this.buttonTestTrainer.Location = new System.Drawing.Point(463, 145);
+            this.buttonTestTrainer.Location = new System.Drawing.Point(441, 107);
             this.buttonTestTrainer.Name = "buttonTestTrainer";
             this.buttonTestTrainer.Size = new System.Drawing.Size(197, 22);
             this.buttonTestTrainer.TabIndex = 101;
@@ -187,30 +200,73 @@ namespace DesktopApp1
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
+            // radioBtnSearchTrainer
+            // 
+            this.radioBtnSearchTrainer.AutoSize = true;
+            this.radioBtnSearchTrainer.Location = new System.Drawing.Point(102, 0);
+            this.radioBtnSearchTrainer.Name = "radioBtnSearchTrainer";
+            this.radioBtnSearchTrainer.Size = new System.Drawing.Size(58, 17);
+            this.radioBtnSearchTrainer.TabIndex = 106;
+            this.radioBtnSearchTrainer.Text = "Trainer";
+            this.radioBtnSearchTrainer.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnSearchPokemon
+            // 
+            this.radioBtnSearchPokemon.AutoSize = true;
+            this.radioBtnSearchPokemon.Location = new System.Drawing.Point(0, -2);
+            this.radioBtnSearchPokemon.Name = "radioBtnSearchPokemon";
+            this.radioBtnSearchPokemon.Size = new System.Drawing.Size(70, 17);
+            this.radioBtnSearchPokemon.TabIndex = 105;
+            this.radioBtnSearchPokemon.Text = "Pokémon";
+            this.radioBtnSearchPokemon.UseVisualStyleBackColor = true;
+            // 
+            // panelRadioBtnSearch
+            // 
+            this.panelRadioBtnSearch.Controls.Add(this.radioBtnSearchPokemon);
+            this.panelRadioBtnSearch.Controls.Add(this.radioBtnSearchTrainer);
+            this.panelRadioBtnSearch.Location = new System.Drawing.Point(619, 226);
+            this.panelRadioBtnSearch.Name = "panelRadioBtnSearch";
+            this.panelRadioBtnSearch.Size = new System.Drawing.Size(165, 18);
+            this.panelRadioBtnSearch.TabIndex = 109;
+            // 
+            // panelRadioBtn
+            // 
+            this.panelRadioBtn.Controls.Add(this.radioBtnPokemon);
+            this.panelRadioBtn.Controls.Add(this.radioBtnTrainer);
+            this.panelRadioBtn.Location = new System.Drawing.Point(46, 180);
+            this.panelRadioBtn.Name = "panelRadioBtn";
+            this.panelRadioBtn.Size = new System.Drawing.Size(166, 30);
+            this.panelRadioBtn.TabIndex = 107;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 545);
+            this.Controls.Add(this.panelRadioBtn);
+            this.Controls.Add(this.panelRadioBtnSearch);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonTestTrainer);
             this.Controls.Add(this.comboBoxTrainer);
             this.Controls.Add(this.numericUpDownLevel);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBoxNickname);
             this.Controls.Add(this.textBoxType);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.buttonSearch);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevel)).EndInit();
+            this.panelRadioBtnSearch.ResumeLayout(false);
+            this.panelRadioBtnSearch.PerformLayout();
+            this.panelRadioBtn.ResumeLayout(false);
+            this.panelRadioBtn.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,19 +274,23 @@ namespace DesktopApp1
 
         #endregion
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxType;
         private System.Windows.Forms.TextBox textBoxNickname;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioBtnPokemon;
+        private System.Windows.Forms.RadioButton radioBtnTrainer;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.NumericUpDown numericUpDownLevel;
         private System.Windows.Forms.ComboBox comboBoxTrainer;
         private System.Windows.Forms.Button buttonTestTrainer;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.RadioButton radioBtnSearchTrainer;
+        private System.Windows.Forms.RadioButton radioBtnSearchPokemon;
+        private System.Windows.Forms.Panel panelRadioBtnSearch;
+        private System.Windows.Forms.Panel panelRadioBtn;
     }
 }
 
