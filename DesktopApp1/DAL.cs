@@ -19,14 +19,14 @@ namespace DesktopApp1
                 projectEntities.create_trainer(tName, nbrOfBadges);
             }
         }
-        public void CreatePokemon (string pName, string nickName, int pLevel, string pType, int tId)
+        public void CreatePokemon (string pName, string nickName, int pLevel, string pType, int? tId)
         {
             using (ProjectEntities projectEntities = new ProjectEntities())
             {
-                projectEntities.create_pokémon(pName,nickName,pLevel,pType,tId);
-            }
+                projectEntities.create_pokémon(pName, nickName, pLevel, pType, tId);
+            }      
         }
-        public void UpdatePokemon(string pName, string nickName, int pId, int pLevel, string pType, int tId)
+        public void UpdatePokemon(string pName, string nickName, int pId, int pLevel, string pType, int? tId)
         {
             using (ProjectEntities projectEntities = new ProjectEntities())
             {
@@ -38,6 +38,13 @@ namespace DesktopApp1
             using (ProjectEntities projectEntities = new ProjectEntities())
             {
                 projectEntities.update_trainer(tName, tId, nbrOfBadges);
+            }
+        }
+        public List<Pokémon> ReadPokemonsTrainer(int tId)
+        {
+            using (ProjectEntities projectEntities = new ProjectEntities())
+            {
+                return projectEntities.read_pokemon_trainer(tId).ToList();
             }
         }
         public void DeleteTrainer(int tId)

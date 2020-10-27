@@ -187,5 +187,23 @@ namespace DesktopApp1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("update_trainer", tNameParameter, nbrOfBadgesParameter, tIdParameter);
         }
+    
+        public virtual ObjectResult<Pokémon> read_pokemon_trainer(Nullable<int> tId)
+        {
+            var tIdParameter = tId.HasValue ?
+                new ObjectParameter("tId", tId) :
+                new ObjectParameter("tId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pokémon>("read_pokemon_trainer", tIdParameter);
+        }
+    
+        public virtual ObjectResult<Pokémon> read_pokemon_trainer(Nullable<int> tId, MergeOption mergeOption)
+        {
+            var tIdParameter = tId.HasValue ?
+                new ObjectParameter("tId", tId) :
+                new ObjectParameter("tId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pokémon>("read_pokemon_trainer", mergeOption, tIdParameter);
+        }
     }
 }
