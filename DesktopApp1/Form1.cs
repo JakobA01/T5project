@@ -26,6 +26,12 @@ namespace DesktopApp1
             PopulateCbxTrainer();
             
         }
+        private void ErrorMessagebox(String errormessage)
+        {
+            String caption = "Error occured";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(errormessage, caption, buttons);
+        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -88,12 +94,8 @@ namespace DesktopApp1
             catch (Exception ex)
             {
                 String errormessage = error.GetMessage(ex);
-                String caption = "Error occured";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(errormessage, caption, buttons);
-                
-            }
-            
+                ErrorMessagebox(errormessage);
+            }            
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
