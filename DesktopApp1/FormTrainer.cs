@@ -136,7 +136,19 @@ namespace DesktopApp1
 
         private void ButtonUpdateTrainerFT_Click_1(object sender, EventArgs e)
         {
-
+            try
+            {
+                int tId = Int32.Parse(textBoxTrainerIdFT.Text.ToString());
+                string tName = textBoxNameFT.Text;
+                int nbrOfBadges = (int)Math.Round(numericUpDownNbrBadgesFT.Value);
+                controller.UpdateTrainer(tName, nbrOfBadges, tId);
+                MessageBox.Show("Trainer updated!", $"{tId} sucessfully updated", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
         }
 
         private void ButtonRemovePokemonFT_Click(object sender, EventArgs e)
