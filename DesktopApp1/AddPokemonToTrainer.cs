@@ -63,7 +63,7 @@ namespace DesktopApp1
                         row.Selected = true;
                     }
                 }
-                MessageBox.Show("Pokemon added");
+                MessageBox.Show($"{currentPokemon.pName} with ID {currentPokemon.pId} added!", "New Pokémon", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {
