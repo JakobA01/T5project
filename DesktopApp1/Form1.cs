@@ -221,6 +221,7 @@ namespace DesktopApp1
                 pk = Int32.Parse(dataGridView.CurrentRow.Cells[3].Value.ToString());
                 currentPokemon = controller.FindPokemon(pk);
                 FormPokemon fp = new FormPokemon(this);
+                fp.textBoxPidFP.Text = currentPokemon.pId.ToString();
                 fp.textBoxNameFP.Text = currentPokemon.pName;
                 fp.textBoxNicknameFP.Text = currentPokemon.nickname;
                 fp.textBoxTypeFP.Text = currentPokemon.pType;
