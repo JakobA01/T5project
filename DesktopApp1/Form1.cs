@@ -15,6 +15,7 @@ namespace DesktopApp1
 {
     public partial class Form1 : Form
     {
+        ErrorHandling error = new ErrorHandling();
         Controller controller = new Controller();
         public Form1()
         {
@@ -77,8 +78,18 @@ namespace DesktopApp1
             Console.WriteLine(name + nickname + type);
             Console.WriteLine(trainerId);
             Console.WriteLine(level);
-
-            controller.CreatePokemon(name, nickname, level, type, trainerId);
+            try
+            {
+                controller.CreatePokemon(name, nickname, level, type, trainerId);
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                String caption = "Error occured";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(errormessage, caption, buttons);
+                
+            }
             
         }
 
