@@ -145,14 +145,24 @@ namespace DesktopApp1
             dataGridView.DataSource = null;
             if (radioBtnSearchPokemon.Checked == true)
             {
+                while (dataGridView.Rows.Count > 0)
+                {
+                    dataGridView.Rows.RemoveAt(0);
+                }
+                Console.WriteLine("Showsearch yea");
                 dataGridView.DataSource = controller.FindAllPokemons();
                 dataGridView.Columns.Remove("Trainer");
                 dataGridView.Columns["pId"].HeaderText = "PokémonId";
                 dataGridView.Columns["tId"].HeaderText = "TrainerId";
+                Console.WriteLine("Showsearch done");
 
             }
             else if (radioBtnSearchTrainer.Checked == true)
             {
+                while (dataGridView.Rows.Count > 0)
+                {
+                    dataGridView.Rows.RemoveAt(0);
+                }
                 dataGridView.DataSource = controller.FindAllTrainers();
                 dataGridView.Columns.Remove("Pokémon");
                 dataGridView.Columns["tId"].HeaderText = "TrainerId";
