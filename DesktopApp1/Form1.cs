@@ -15,6 +15,7 @@ namespace DesktopApp1
 {
     public partial class Form1 : Form
     {
+        ErrorHandling error = new ErrorHandling();
         Trainer currentTrainer;
         Pokémon currentPokemon;
         Controller controller = new Controller();
@@ -24,6 +25,12 @@ namespace DesktopApp1
             ShowSearch();
             PopulateCbxTrainer();
             
+        }
+        private void ErrorMessagebox(String errormessage)
+        {
+            String caption = "Error occured";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(errormessage, caption, buttons);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -111,8 +118,21 @@ namespace DesktopApp1
             int? trainerId = (int?)comboBoxTrainer.SelectedValue;
             int level = (int)Math.Round(numericUpDownLevel.Value, 0);
 
+
             controller.CreatePokemon(name, nickname, level, type, trainerId);
             
+            Console.WriteLine(name + nickname + type);
+            Console.WriteLine(trainerId);
+            Console.WriteLine(level);
+            try
+            {
+                controller.CreatePokemon(name, nickname, level, type, trainerId);
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }            
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)

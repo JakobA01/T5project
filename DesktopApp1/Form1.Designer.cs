@@ -28,6 +28,7 @@ namespace DesktopApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.buttonSearch = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -46,10 +47,14 @@ namespace DesktopApp1
             this.radioBtnSearchPokemon = new System.Windows.Forms.RadioButton();
             this.panelRadioBtnSearch = new System.Windows.Forms.Panel();
             this.panelRadioBtn = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevel)).BeginInit();
             this.panelRadioBtnSearch.SuspendLayout();
             this.panelRadioBtn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonSearch
@@ -172,7 +177,7 @@ namespace DesktopApp1
             // 
             // buttonTestTrainer
             // 
-            this.buttonTestTrainer.Location = new System.Drawing.Point(441, 107);
+            this.buttonTestTrainer.Location = new System.Drawing.Point(364, 200);
             this.buttonTestTrainer.Name = "buttonTestTrainer";
             this.buttonTestTrainer.Size = new System.Drawing.Size(197, 22);
             this.buttonTestTrainer.TabIndex = 101;
@@ -239,11 +244,33 @@ namespace DesktopApp1
             this.panelRadioBtn.Size = new System.Drawing.Size(166, 30);
             this.panelRadioBtn.TabIndex = 107;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(706, 18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(137, 147);
+            this.pictureBox1.TabIndex = 110;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(324, 13);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(340, 96);
+            this.pictureBox2.TabIndex = 111;
+            this.pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(901, 545);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelRadioBtn);
             this.Controls.Add(this.panelRadioBtnSearch);
             this.Controls.Add(this.buttonUpdate);
@@ -268,6 +295,8 @@ namespace DesktopApp1
             this.panelRadioBtnSearch.PerformLayout();
             this.panelRadioBtn.ResumeLayout(false);
             this.panelRadioBtn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,6 +321,8 @@ namespace DesktopApp1
         private System.Windows.Forms.Panel panelRadioBtnSearch;
         private System.Windows.Forms.Panel panelRadioBtn;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
