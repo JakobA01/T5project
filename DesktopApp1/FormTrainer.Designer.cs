@@ -60,11 +60,6 @@
             // numericUpDownNbrBadgesFT
             // 
             this.numericUpDownNbrBadgesFT.Location = new System.Drawing.Point(57, 119);
-            this.numericUpDownNbrBadgesFT.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
             this.numericUpDownNbrBadgesFT.Name = "numericUpDownNbrBadgesFT";
             this.numericUpDownNbrBadgesFT.Size = new System.Drawing.Size(92, 20);
             this.numericUpDownNbrBadgesFT.TabIndex = 117;
@@ -147,6 +142,7 @@
             this.buttonRemoveTrainerFT.TabIndex = 124;
             this.buttonRemoveTrainerFT.Text = "Remove";
             this.buttonRemoveTrainerFT.UseVisualStyleBackColor = true;
+            this.buttonRemoveTrainerFT.Click += new System.EventHandler(this.ButtonRemoveTrainerFT_Click);
             // 
             // buttonUpdateTrainerFT
             // 

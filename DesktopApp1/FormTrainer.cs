@@ -36,20 +36,29 @@ namespace DesktopApp1
 
         private void ButtonConfirm_Click(object sender, EventArgs e)
         {
-            AddPokemonToTrainer form = new AddPokemonToTrainer(this);
-            form.currentTID = Int32.Parse(textBoxTrainerIdFT.Text);
-            form.dataGridViewAddPokemon.DataSource = controller.FindAllPokemons();
-            form.FormClosing += new FormClosingEventHandler(this.AddPokemonToTrainer_FormClosing);
-            form.dataGridViewAddPokemon.Columns["pId"].HeaderText = "Pokémon ID";
-            form.dataGridViewAddPokemon.Columns["tId"].HeaderText = "Trainer ID";
-            form.dataGridViewAddPokemon.Columns["pLevel"].HeaderText = "Level";
-            form.dataGridViewAddPokemon.Columns["pType"].HeaderText = "Type";
-            form.dataGridViewAddPokemon.Columns["pName"].HeaderText = "Name";
-            form.dataGridViewAddPokemon.Columns["nickName"].HeaderText = "Nickname";
-            //AddPokemonToTrainer fp = new AddPokemonToTrainer(this);           
-            //fp.FormClosing += new FormClosingEventHandler(this.FormPokemon_FormClosing);
-            //fp.buttonUpdateFP.Click += new EventHandler(this.FormPokemon_FormClosing);
-            form.ShowDialog();
+            try
+            {
+                AddPokemonToTrainer form = new AddPokemonToTrainer(this);
+                form.currentTID = Int32.Parse(textBoxTrainerIdFT.Text);
+                form.dataGridViewAddPokemon.DataSource = controller.FindAllPokemons();
+                form.FormClosing += new FormClosingEventHandler(this.AddPokemonToTrainer_FormClosing);
+                form.dataGridViewAddPokemon.Columns["pId"].HeaderText = "Pokémon ID";
+                form.dataGridViewAddPokemon.Columns["tId"].HeaderText = "Trainer ID";
+                form.dataGridViewAddPokemon.Columns["pLevel"].HeaderText = "Level";
+                form.dataGridViewAddPokemon.Columns["pType"].HeaderText = "Type";
+                form.dataGridViewAddPokemon.Columns["pName"].HeaderText = "Name";
+                form.dataGridViewAddPokemon.Columns["nickName"].HeaderText = "Nickname";
+                //AddPokemonToTrainer fp = new AddPokemonToTrainer(this);           
+                //fp.FormClosing += new FormClosingEventHandler(this.FormPokemon_FormClosing);
+                //fp.buttonUpdateFP.Click += new EventHandler(this.FormPokemon_FormClosing);
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
+           
         }
 
         private void Label2_Click(object sender, EventArgs e)
@@ -176,6 +185,30 @@ namespace DesktopApp1
                 ErrorMessagebox(errormessage);
             }
             
+        }
+
+        private void ButtonRemoveTrainerFT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult removeTrainer = MessageBox.Show("Are you sure you want to remove this trainer?", "Remove trainer", MessageBoxButtons.YesNo);
+                if(removeTrainer == DialogResult.Yes)
+                {
+                    int tId = Int32.Parse(textBoxTrainerIdFT.Text);
+                    controller.DeleteTrainer(tId);
+                    if (controller.FindTrainer(tId).tId.Equals(0))
+                    {
+                        this.Close();
+                        MessageBox.Show("Trainer was successfully removed");
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
         }
     }
 }

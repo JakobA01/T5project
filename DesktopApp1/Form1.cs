@@ -322,5 +322,14 @@ namespace DesktopApp1
             textBoxType.Visible = true;
             lblLevel.Text = "Level:";
         }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+            DialogResult pikachuMessage = MessageBox.Show("Pika pika :)", "Secret Pikachu message", MessageBoxButtons.OK);
+            if (pikachuMessage == DialogResult.OK)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rg6CiPI6h2g");
+            }
+        }
     }
 }
