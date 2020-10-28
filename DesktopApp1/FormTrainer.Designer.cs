@@ -35,7 +35,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonUpdateFT = new System.Windows.Forms.Button();
             this.buttonRemovePokemonFT = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labeNbrOfBadges = new System.Windows.Forms.Label();
             this.buttonRemoveTrainerFT = new System.Windows.Forms.Button();
             this.buttonUpdateTrainerFT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNbrBadgesFT)).BeginInit();
@@ -113,15 +113,15 @@
             this.buttonRemovePokemonFT.Text = "Remove";
             this.buttonRemovePokemonFT.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // labeNbrOfBadges
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 150);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
-            this.label2.TabIndex = 123;
-            this.label2.Text = "Number of Badges";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
+            this.labeNbrOfBadges.AutoSize = true;
+            this.labeNbrOfBadges.Location = new System.Drawing.Point(23, 150);
+            this.labeNbrOfBadges.Name = "labeNbrOfBadges";
+            this.labeNbrOfBadges.Size = new System.Drawing.Size(95, 13);
+            this.labeNbrOfBadges.TabIndex = 123;
+            this.labeNbrOfBadges.Text = "Number of Badges";
+            this.labeNbrOfBadges.Click += new System.EventHandler(this.Label2_Click);
             // 
             // buttonRemoveTrainerFT
             // 
@@ -149,7 +149,7 @@
             this.ClientSize = new System.Drawing.Size(592, 369);
             this.Controls.Add(this.buttonUpdateTrainerFT);
             this.Controls.Add(this.buttonRemoveTrainerFT);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labeNbrOfBadges);
             this.Controls.Add(this.buttonRemovePokemonFT);
             this.Controls.Add(this.buttonUpdateFT);
             this.Controls.Add(this.dataGridView1);
@@ -169,14 +169,14 @@
         #endregion
 
         private System.Windows.Forms.Button buttonConfirmFT;
-        private System.Windows.Forms.NumericUpDown numericUpDownNbrBadgesFT;
-        private System.Windows.Forms.TextBox textBoxTrainerIdFT;
-        private System.Windows.Forms.TextBox textBoxNameFT;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonUpdateFT;
         private System.Windows.Forms.Button buttonRemovePokemonFT;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labeNbrOfBadges;
         private System.Windows.Forms.Button buttonRemoveTrainerFT;
         private System.Windows.Forms.Button buttonUpdateTrainerFT;
+        public System.Windows.Forms.TextBox textBoxTrainerIdFT;
+        public System.Windows.Forms.NumericUpDown numericUpDownNbrBadgesFT;
+        public System.Windows.Forms.TextBox textBoxNameFT;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

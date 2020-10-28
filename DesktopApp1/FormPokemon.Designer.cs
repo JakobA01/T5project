@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.buttonUpdateFP = new System.Windows.Forms.Button();
-            this.comboBoxChooseTrainerFP = new System.Windows.Forms.ComboBox();
             this.numericUpDownLevelFP = new System.Windows.Forms.NumericUpDown();
             this.textBoxNicknameFP = new System.Windows.Forms.TextBox();
             this.textBoxTypeFP = new System.Windows.Forms.TextBox();
             this.textBoxNameFP = new System.Windows.Forms.TextBox();
             this.btnRemoveFP = new System.Windows.Forms.Button();
+            this.textBoxTrainerId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevelFP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,15 +46,6 @@
             this.buttonUpdateFP.TabIndex = 112;
             this.buttonUpdateFP.Text = "Update";
             this.buttonUpdateFP.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxChooseTrainerFP
-            // 
-            this.comboBoxChooseTrainerFP.FormattingEnabled = true;
-            this.comboBoxChooseTrainerFP.Location = new System.Drawing.Point(29, 138);
-            this.comboBoxChooseTrainerFP.Name = "comboBoxChooseTrainerFP";
-            this.comboBoxChooseTrainerFP.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxChooseTrainerFP.TabIndex = 110;
-            this.comboBoxChooseTrainerFP.Text = "TrainerId";
             // 
             // numericUpDownLevelFP
             // 
@@ -107,14 +98,22 @@
             this.btnRemoveFP.Text = "Update";
             this.btnRemoveFP.UseVisualStyleBackColor = true;
             // 
+            // textBoxTrainerId
+            // 
+            this.textBoxTrainerId.Location = new System.Drawing.Point(29, 138);
+            this.textBoxTrainerId.Name = "textBoxTrainerId";
+            this.textBoxTrainerId.Size = new System.Drawing.Size(126, 20);
+            this.textBoxTrainerId.TabIndex = 114;
+            this.textBoxTrainerId.Text = "Trainer";
+            // 
             // FormPokemon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(322, 280);
+            this.Controls.Add(this.textBoxTrainerId);
             this.Controls.Add(this.btnRemoveFP);
             this.Controls.Add(this.buttonUpdateFP);
-            this.Controls.Add(this.comboBoxChooseTrainerFP);
             this.Controls.Add(this.numericUpDownLevelFP);
             this.Controls.Add(this.textBoxNicknameFP);
             this.Controls.Add(this.textBoxTypeFP);
@@ -130,11 +129,11 @@
         #endregion
 
         private System.Windows.Forms.Button buttonUpdateFP;
-        private System.Windows.Forms.ComboBox comboBoxChooseTrainerFP;
-        private System.Windows.Forms.NumericUpDown numericUpDownLevelFP;
-        private System.Windows.Forms.TextBox textBoxNicknameFP;
-        private System.Windows.Forms.TextBox textBoxTypeFP;
-        private System.Windows.Forms.TextBox textBoxNameFP;
         private System.Windows.Forms.Button btnRemoveFP;
+        public System.Windows.Forms.NumericUpDown numericUpDownLevelFP;
+        public System.Windows.Forms.TextBox textBoxNicknameFP;
+        public System.Windows.Forms.TextBox textBoxTypeFP;
+        public System.Windows.Forms.TextBox textBoxNameFP;
+        public System.Windows.Forms.TextBox textBoxTrainerId;
     }
 }

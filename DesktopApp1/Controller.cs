@@ -139,5 +139,21 @@ namespace DesktopApp1
             }
         }
 
+        public string FindTrainerFromPokemon(int pId)
+        {
+            string tmpString = "";
+            Pokémon p = FindPokemon(pId);
+            if(p.tId.GetValueOrDefault() != 0)
+            {
+                Trainer t = FindTrainer((int)p.tId);
+                tmpString = t.tName + t.tId.ToString();
+            }
+            else
+            {
+                tmpString = "Stray pokémon";
+            }
+            return tmpString;
+        }
+
     }
 }

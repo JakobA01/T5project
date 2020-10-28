@@ -12,8 +12,10 @@ namespace DesktopApp1
 {
     public partial class FormPokemon : Form
     {
-        public FormPokemon()
+        Form1 form;
+        public FormPokemon(Form1 form1)
         {
+            form = form1;
             InitializeComponent();
         }
     }
