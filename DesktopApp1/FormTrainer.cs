@@ -138,5 +138,32 @@ namespace DesktopApp1
         {
 
         }
+
+        private void ButtonRemovePokemonFT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int pk;
+                pk = Int32.Parse(dataGridView1.CurrentRow.Cells["pId"].Value.ToString());
+                Pokémon pokemon = new Pokémon();
+                pokemon = controller.FindPokemon(pk);
+                DialogResult removePokemon = MessageBox.Show($"Are you sure you want to remove {pokemon.pName} with Id: {pokemon.pId} from trainer {textBoxNameFT.Text}?", "Remove pokémon", MessageBoxButtons.YesNo);
+                if (removePokemon == DialogResult.Yes)
+                {
+                    controller.UpdatePokemon(pokemon.pName, pokemon.nickname, pk, pokemon.pLevel, pokemon.pType, null);
+                    if (controller.FindTrainerFromPokemon(pk).Equals("Stray pokémon"))
+                    {
+                        dataGridView1.DataSource = controller.FindPokemonsTrainer(Int32.Parse(textBoxTrainerIdFT.Text));
+                        MessageBox.Show("Pokémon successfully removed");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
+            
+        }
     }
 }

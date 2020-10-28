@@ -66,11 +66,19 @@ namespace DesktopApp1
             string pName = textBoxNameFP.Text;
             string pType = textBoxTypeFP.Text;
             string nickname = textBoxNicknameFP.Text;
-            int? tId = Int32.Parse(textBoxTrainerId.Text); 
-
+            int? tId;
+            try
+            {
+                tId = Int32.Parse(textBoxTrainerId.Text);
+            }
+            catch (FormatException exe)
+            {
+                tId = null;
+            }         
             try
             {
                 controller.UpdatePokemon(pName, nickname, pId, pLevel, pType, tId);
+                MessageBox.Show("Pokémon successfully updated");
                 
             }
             catch (Exception ex)
