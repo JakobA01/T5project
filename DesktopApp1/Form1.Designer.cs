@@ -152,6 +152,11 @@ namespace DesktopApp1
             // numericUpDownLevel
             // 
             this.numericUpDownLevel.Location = new System.Drawing.Point(194, 145);
+            this.numericUpDownLevel.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownLevel.Minimum = new decimal(new int[] {
             1,
             0,
@@ -234,6 +239,7 @@ namespace DesktopApp1
             this.pictureBox1.Size = new System.Drawing.Size(137, 147);
             this.pictureBox1.TabIndex = 110;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // pictureBox2
             // 
