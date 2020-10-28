@@ -124,7 +124,7 @@ namespace DesktopApp1
             try
             {
                 if (radioBtnPokemon.Checked == true)
-                {
+                {                
                     string name = textBoxName.Text;
                     string nickname = textBoxNickname.Text;
                     string type = textBoxType.Text;
@@ -142,6 +142,8 @@ namespace DesktopApp1
                     string name = textBoxName.Text;
                     int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
                     controller.CreateTrainer(name, nbrOfBadges);
+                    MessageBox.Show("Trainer was added");
+                    textBoxName.Text = "Name";
                 }
                 //PopulateCbxTrainer();
             }
@@ -223,9 +225,9 @@ namespace DesktopApp1
         private void UpdateWindowOpen()
         {
             int pk;
-            if (dataGridView.ColumnCount > 3)
+            if (dataGridView.Columns.Contains("pId"))
             {
-                pk = Int32.Parse(dataGridView.CurrentRow.Cells[3].Value.ToString());
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells["pId"].Value.ToString());
                 currentPokemon = controller.FindPokemon(pk);
                 FormPokemon fp = new FormPokemon(this);
                 fp.textBoxPidFP.Text = currentPokemon.pId.ToString();
@@ -238,13 +240,19 @@ namespace DesktopApp1
             }
             else
             {
-                pk = Int32.Parse(dataGridView.CurrentRow.Cells[1].Value.ToString());
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells["tId"].Value.ToString());
                 currentTrainer = controller.FindTrainer(pk);
-                FormTrainer ft = new FormTrainer(this);
+                FormTrainer ft = new FormTrainer(this);              
                 ft.textBoxTrainerIdFT.Text = currentTrainer.tId.ToString();
                 ft.textBoxNameFT.Text = currentTrainer.tName;
                 ft.numericUpDownNbrBadgesFT.Value = currentTrainer.nbrOfBadges;
                 ft.dataGridView1.DataSource = controller.FindPokemonsTrainer(pk);
+                ft.dataGridView1.Columns["pId"].HeaderText = "Pokémon ID";
+                ft.dataGridView1.Columns["tId"].HeaderText = "Trainer ID";
+                ft.dataGridView1.Columns["pLevel"].HeaderText = "Level";
+                ft.dataGridView1.Columns["pType"].HeaderText = "Type";
+                ft.dataGridView1.Columns["pName"].HeaderText = "Name";
+                ft.dataGridView1.Columns["nickName"].HeaderText = "Nickname";
 
                 ft.ShowDialog();
             }
@@ -286,6 +294,24 @@ namespace DesktopApp1
                 numericUpDownLevel.Maximum = 8;
                 numericUpDownLevel.Minimum = 0;
             }
+        }
+
+        private void RadioBtnTrainer_CheckedChanged_1(object sender, EventArgs e)
+        {
+            textBoxName.Text = "Name";
+            textBoxNickname.Visible = false;
+            textBoxType.Visible = false;
+            lblLevel.Text = "Badges:";
+        }
+
+        private void RadioBtnPokemon_CheckedChanged_1(object sender, EventArgs e)
+        {
+            textBoxName.Text = "Name";
+            textBoxNickname.Text = "Nick name";
+            textBoxType.Text = "Type";
+            textBoxNickname.Visible = true;
+            textBoxType.Visible = true;
+            lblLevel.Text = "Level:";
         }
     }
 }

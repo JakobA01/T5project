@@ -66,7 +66,7 @@ namespace DesktopApp1
             string pName = textBoxNameFP.Text;
             string pType = textBoxTypeFP.Text;
             string nickname = textBoxNicknameFP.Text;
-            int tId = Int32.Parse(textBoxTrainerId.Text);
+            int? tId = Int32.Parse(textBoxTrainerId.Text); 
 
             try
             {

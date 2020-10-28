@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPokemonToTrainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPokemonToTrainer.Designer.cs">
+      <DependentUpon>AddPokemonToTrainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="ERModel.Context.cs">
@@ -121,6 +127,9 @@
     <Compile Include="Trainer.cs">
       <DependentUpon>ERModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddPokemonToTrainer.resx">
+      <DependentUpon>AddPokemonToTrainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
