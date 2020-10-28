@@ -59,7 +59,15 @@ namespace DesktopApp1
         }
         public List<Trainer> FindAllTrainers()
         {
-            return dal.ReadAllTrainer().ToList();
+            try
+            {
+                return dal.ReadAllTrainer().ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
         }
         public void CreatePokemon(string pName, string nickName, int pLevel, string pType, int? tId)
         {
