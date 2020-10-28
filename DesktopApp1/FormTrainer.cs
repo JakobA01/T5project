@@ -15,10 +15,12 @@ namespace DesktopApp1
         Form1 form;
         Controller controller = new Controller();
         ErrorHandling error = new ErrorHandling();
+        Pokémon currentPokemon = new Pokémon();
         public FormTrainer(Form1 form1)
         {
             InitializeComponent();
             form = form1;
+            
         }
         private void ErrorMessagebox(String errormessage)
         {
@@ -62,6 +64,61 @@ namespace DesktopApp1
                 String errormessage = error.GetMessage(ex);
                 ErrorMessagebox(errormessage);
             }
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormPokemon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            populateDataGrid();
+        }
+        public void populateDataGrid()
+        {
+
+            int pk = Int32.Parse(this.textBoxTrainerIdFT.Text);
+            dataGridView1.DataSource = controller.FindPokemonsTrainer(pk);
+            /*if (dataGridView1.Columns.Contains("Trainer"))
+            {
+                dataGridView1.Columns.Remove("Trainer");
+            }*/
+        }
+
+        private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (dataGridView1.Columns.Contains("Trainer"))
+            {
+                dataGridView1.Columns.Remove("Trainer");
+            }
+        }
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int pk;
+            pk = Int32.Parse(dataGridView1.CurrentRow.Cells[3].Value.ToString());
+            currentPokemon = controller.FindPokemon(pk);
+            FormPokemon fp = new FormPokemon(this);
+            fp.textBoxPidFP.Text = currentPokemon.pId.ToString();
+            fp.textBoxNameFP.Text = currentPokemon.pName;
+            fp.textBoxNicknameFP.Text = currentPokemon.nickname;
+            fp.textBoxTypeFP.Text = currentPokemon.pType;
+            fp.numericUpDownLevelFP.Value = currentPokemon.pLevel;
+            fp.textBoxTrainerId.Text = controller.FindTrainerFromPokemon(pk);
+            fp.FormClosing += new FormClosingEventHandler(this.FormPokemon_FormClosing);
+            //fp.buttonUpdateFP.Click += new EventHandler(this.FormPokemon_FormClosing);
+            fp.ShowDialog();
+        }
+
+        private void ButtonUpdateTrainerFT_Click_1(object sender, EventArgs e)
+        {
 
         }
     }

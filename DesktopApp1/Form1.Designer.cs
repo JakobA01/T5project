@@ -39,8 +39,6 @@ namespace DesktopApp1
             this.radioBtnTrainer = new System.Windows.Forms.RadioButton();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.numericUpDownLevel = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxTrainer = new System.Windows.Forms.ComboBox();
-            this.buttonTestTrainer = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.radioBtnSearchTrainer = new System.Windows.Forms.RadioButton();
@@ -49,6 +47,7 @@ namespace DesktopApp1
             this.panelRadioBtn = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblLevel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevel)).BeginInit();
             this.panelRadioBtnSearch.SuspendLayout();
@@ -165,26 +164,6 @@ namespace DesktopApp1
             0,
             0});
             // 
-            // comboBoxTrainer
-            // 
-            this.comboBoxTrainer.FormattingEnabled = true;
-            this.comboBoxTrainer.Location = new System.Drawing.Point(53, 144);
-            this.comboBoxTrainer.Name = "comboBoxTrainer";
-            this.comboBoxTrainer.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxTrainer.TabIndex = 13;
-            this.comboBoxTrainer.Text = "TrainerId";
-            this.comboBoxTrainer.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTId_SelectedIndexChanged);
-            // 
-            // buttonTestTrainer
-            // 
-            this.buttonTestTrainer.Location = new System.Drawing.Point(364, 200);
-            this.buttonTestTrainer.Name = "buttonTestTrainer";
-            this.buttonTestTrainer.Size = new System.Drawing.Size(197, 22);
-            this.buttonTestTrainer.TabIndex = 101;
-            this.buttonTestTrainer.Text = "testopen trainer";
-            this.buttonTestTrainer.UseVisualStyleBackColor = true;
-            this.buttonTestTrainer.Click += new System.EventHandler(this.ButtonTestTrainer_Click);
-            // 
             // buttonRemove
             // 
             this.buttonRemove.ForeColor = System.Drawing.Color.Red;
@@ -263,20 +242,28 @@ namespace DesktopApp1
             this.pictureBox2.TabIndex = 111;
             this.pictureBox2.TabStop = false;
             // 
+            // lblLevel
+            // 
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Location = new System.Drawing.Point(147, 147);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(36, 13);
+            this.lblLevel.TabIndex = 112;
+            this.lblLevel.Text = "Level:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(901, 545);
+            this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panelRadioBtn);
             this.Controls.Add(this.panelRadioBtnSearch);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonRemove);
-            this.Controls.Add(this.buttonTestTrainer);
-            this.Controls.Add(this.comboBoxTrainer);
             this.Controls.Add(this.numericUpDownLevel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textBox5);
@@ -312,8 +299,6 @@ namespace DesktopApp1
         private System.Windows.Forms.RadioButton radioBtnTrainer;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.NumericUpDown numericUpDownLevel;
-        private System.Windows.Forms.ComboBox comboBoxTrainer;
-        private System.Windows.Forms.Button buttonTestTrainer;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.RadioButton radioBtnSearchTrainer;
@@ -323,6 +308,7 @@ namespace DesktopApp1
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblLevel;
     }
 }
 

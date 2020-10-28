@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTrainer));
             this.buttonConfirmFT = new System.Windows.Forms.Button();
             this.numericUpDownNbrBadgesFT = new System.Windows.Forms.NumericUpDown();
             this.textBoxTrainerIdFT = new System.Windows.Forms.TextBox();
@@ -38,8 +39,12 @@
             this.labeNbrOfBadges = new System.Windows.Forms.Label();
             this.buttonRemoveTrainerFT = new System.Windows.Forms.Button();
             this.buttonUpdateTrainerFT = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelTrainerId = new System.Windows.Forms.Label();
+            this.labelTrainerName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNbrBadgesFT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonConfirmFT
@@ -54,14 +59,14 @@
             // 
             // numericUpDownNbrBadgesFT
             // 
-            this.numericUpDownNbrBadgesFT.Location = new System.Drawing.Point(156, 148);
+            this.numericUpDownNbrBadgesFT.Location = new System.Drawing.Point(57, 119);
             this.numericUpDownNbrBadgesFT.Maximum = new decimal(new int[] {
             8,
             0,
             0,
             0});
             this.numericUpDownNbrBadgesFT.Name = "numericUpDownNbrBadgesFT";
-            this.numericUpDownNbrBadgesFT.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownNbrBadgesFT.Size = new System.Drawing.Size(92, 20);
             this.numericUpDownNbrBadgesFT.TabIndex = 117;
             this.numericUpDownNbrBadgesFT.Value = new decimal(new int[] {
             1,
@@ -71,8 +76,9 @@
             // 
             // textBoxTrainerIdFT
             // 
-            this.textBoxTrainerIdFT.Location = new System.Drawing.Point(26, 59);
+            this.textBoxTrainerIdFT.Location = new System.Drawing.Point(57, 37);
             this.textBoxTrainerIdFT.Name = "textBoxTrainerIdFT";
+            this.textBoxTrainerIdFT.ReadOnly = true;
             this.textBoxTrainerIdFT.Size = new System.Drawing.Size(92, 20);
             this.textBoxTrainerIdFT.TabIndex = 115;
             this.textBoxTrainerIdFT.Text = "TrainerId";
@@ -80,7 +86,7 @@
             // 
             // textBoxNameFT
             // 
-            this.textBoxNameFT.Location = new System.Drawing.Point(26, 103);
+            this.textBoxNameFT.Location = new System.Drawing.Point(57, 82);
             this.textBoxNameFT.Name = "textBoxNameFT";
             this.textBoxNameFT.Size = new System.Drawing.Size(92, 20);
             this.textBoxNameFT.TabIndex = 113;
@@ -88,11 +94,19 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(339, 26);
+            this.dataGridView1.Location = new System.Drawing.Point(294, 25);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(241, 294);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(286, 295);
             this.dataGridView1.TabIndex = 119;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridView1_DataBindingComplete);
             // 
             // buttonUpdateFT
             // 
@@ -116,17 +130,17 @@
             // labeNbrOfBadges
             // 
             this.labeNbrOfBadges.AutoSize = true;
-            this.labeNbrOfBadges.Location = new System.Drawing.Point(23, 150);
+            this.labeNbrOfBadges.Location = new System.Drawing.Point(2, 119);
             this.labeNbrOfBadges.Name = "labeNbrOfBadges";
-            this.labeNbrOfBadges.Size = new System.Drawing.Size(95, 13);
+            this.labeNbrOfBadges.Size = new System.Drawing.Size(43, 13);
             this.labeNbrOfBadges.TabIndex = 123;
-            this.labeNbrOfBadges.Text = "Number of Badges";
+            this.labeNbrOfBadges.Text = "Badges";
             this.labeNbrOfBadges.Click += new System.EventHandler(this.Label2_Click);
             // 
             // buttonRemoveTrainerFT
             // 
             this.buttonRemoveTrainerFT.ForeColor = System.Drawing.Color.Red;
-            this.buttonRemoveTrainerFT.Location = new System.Drawing.Point(156, 186);
+            this.buttonRemoveTrainerFT.Location = new System.Drawing.Point(150, 167);
             this.buttonRemoveTrainerFT.Name = "buttonRemoveTrainerFT";
             this.buttonRemoveTrainerFT.Size = new System.Drawing.Size(75, 23);
             this.buttonRemoveTrainerFT.TabIndex = 124;
@@ -135,12 +149,42 @@
             // 
             // buttonUpdateTrainerFT
             // 
-            this.buttonUpdateTrainerFT.Location = new System.Drawing.Point(26, 186);
+            this.buttonUpdateTrainerFT.Location = new System.Drawing.Point(57, 167);
             this.buttonUpdateTrainerFT.Name = "buttonUpdateTrainerFT";
             this.buttonUpdateTrainerFT.Size = new System.Drawing.Size(75, 23);
             this.buttonUpdateTrainerFT.TabIndex = 125;
             this.buttonUpdateTrainerFT.Text = "Update";
             this.buttonUpdateTrainerFT.UseVisualStyleBackColor = true;
+            this.buttonUpdateTrainerFT.Click += new System.EventHandler(this.ButtonUpdateTrainerFT_Click_1);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(155, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 120);
+            this.pictureBox1.TabIndex = 126;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelTrainerId
+            // 
+            this.labelTrainerId.AutoSize = true;
+            this.labelTrainerId.Location = new System.Drawing.Point(2, 40);
+            this.labelTrainerId.Name = "labelTrainerId";
+            this.labelTrainerId.Size = new System.Drawing.Size(49, 13);
+            this.labelTrainerId.TabIndex = 127;
+            this.labelTrainerId.Text = "TrainerId";
+            this.labelTrainerId.Click += new System.EventHandler(this.Label1_Click);
+            // 
+            // labelTrainerName
+            // 
+            this.labelTrainerName.AutoSize = true;
+            this.labelTrainerName.Location = new System.Drawing.Point(2, 85);
+            this.labelTrainerName.Name = "labelTrainerName";
+            this.labelTrainerName.Size = new System.Drawing.Size(35, 13);
+            this.labelTrainerName.TabIndex = 128;
+            this.labelTrainerName.Text = "Name";
+            this.labelTrainerName.Click += new System.EventHandler(this.Label2_Click_1);
             // 
             // FormTrainer
             // 
@@ -148,6 +192,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(592, 369);
+            this.Controls.Add(this.labelTrainerName);
+            this.Controls.Add(this.labelTrainerId);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonUpdateTrainerFT);
             this.Controls.Add(this.buttonRemoveTrainerFT);
             this.Controls.Add(this.labeNbrOfBadges);
@@ -162,6 +209,7 @@
             this.Text = "FormTrainer";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNbrBadgesFT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +227,8 @@
         public System.Windows.Forms.NumericUpDown numericUpDownNbrBadgesFT;
         public System.Windows.Forms.TextBox textBoxNameFT;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelTrainerId;
+        private System.Windows.Forms.Label labelTrainerName;
     }
 }
