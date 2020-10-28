@@ -236,6 +236,7 @@ namespace DesktopApp1
                 fp.textBoxTypeFP.Text = currentPokemon.pType;
                 fp.numericUpDownLevelFP.Value = currentPokemon.pLevel;
                 fp.textBoxTrainerId.Text = controller.FindTrainerFromPokemon(pk);
+                fp.FormClosing += new FormClosingEventHandler(this.FormPokemon_FormClosing);
                 fp.ShowDialog();
             }
             else
@@ -253,9 +254,17 @@ namespace DesktopApp1
                 ft.dataGridView1.Columns["pType"].HeaderText = "Type";
                 ft.dataGridView1.Columns["pName"].HeaderText = "Name";
                 ft.dataGridView1.Columns["nickName"].HeaderText = "Nickname";
-
+                ft.FormClosing += new FormClosingEventHandler(this.FormTrainer_FormClosing);
                 ft.ShowDialog();
             }
+        }
+        private void FormPokemon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ShowSearch();
+        }
+        private void FormTrainer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ShowSearch();
         }
         public void CurrentTarget()
         {

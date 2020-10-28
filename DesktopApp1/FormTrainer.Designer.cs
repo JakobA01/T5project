@@ -126,6 +126,7 @@
             this.buttonRemovePokemonFT.TabIndex = 121;
             this.buttonRemovePokemonFT.Text = "Remove";
             this.buttonRemovePokemonFT.UseVisualStyleBackColor = true;
+            this.buttonRemovePokemonFT.Click += new System.EventHandler(this.ButtonRemovePokemonFT_Click);
             // 
             // labeNbrOfBadges
             // 
