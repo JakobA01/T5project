@@ -17,7 +17,7 @@ namespace DesktopApp1
             {
                 message = e.Message;
             }
-            else if (e is System.Data.Entity.Core.EntityCommandExecutionException)
+            else if (e is System.Data.Entity.Core.EntityCommandExecutionException || e is System.Data.Entity.Core.EntityException)
             {
                 message = e.InnerException.Message;
             }

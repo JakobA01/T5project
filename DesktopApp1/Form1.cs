@@ -23,7 +23,7 @@ namespace DesktopApp1
         {
             InitializeComponent();
             //ShowSearch();
-            PopulateCbxTrainer();
+            //PopulateCbxTrainer();
 
         }
         private void ErrorMessagebox(String errormessage)
@@ -75,75 +75,81 @@ namespace DesktopApp1
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
             int pk;
-            if (dataGridView.Columns.Contains("pId"))
+            try
             {
-                pk = Int32.Parse(dataGridView.CurrentRow.Cells["pId"].Value.ToString());
-                currentPokemon = controller.FindPokemon(pk);
-                DialogResult removePokemonDR = MessageBox.Show($"Are you sure you want to delete {currentPokemon.pName} with Id: {currentPokemon.pId}?", "Remove Pokémon", MessageBoxButtons.YesNo);
-                if (removePokemonDR == DialogResult.Yes)
+                if (dataGridView.Columns.Contains("pId"))
                 {
-                    controller.DeletePokemon(pk);
-                    if (controller.FindPokemon(pk).pId.Equals(0))
-                    {                       
-                        MessageBox.Show($"Pokemon {pk} deleted");
-                        ShowSearch();
-                    }
-                }
-            }
-            else
-            {
-                pk = Int32.Parse(dataGridView.CurrentRow.Cells["tId"].Value.ToString());
-                currentTrainer = controller.FindTrainer(pk);
-                DialogResult removeTrainerDR = MessageBox.Show($"Are you sure you want to delete {currentTrainer.tName} with Id: {currentTrainer.tId}?", "Remove Trainer", MessageBoxButtons.YesNo);
-                if (removeTrainerDR == DialogResult.Yes)
-                {
-                    controller.DeleteTrainer(pk);
-                    if (controller.FindTrainer(pk).tId.Equals(0))
+                    pk = Int32.Parse(dataGridView.CurrentRow.Cells["pId"].Value.ToString());
+                    currentPokemon = controller.FindPokemon(pk);
+                    DialogResult removePokemonDR = MessageBox.Show($"Are you sure you want to delete {currentPokemon.pName} with Id: {currentPokemon.pId}?", "Remove Pokémon", MessageBoxButtons.YesNo);
+                    if (removePokemonDR == DialogResult.Yes)
                     {
-                        Console.WriteLine("DEEELEEETE TRAINER");
-                        Console.WriteLine(controller.FindTrainer(pk).tId);                        
-                        MessageBox.Show($"Trainer {pk} deleted");
-                        ShowSearch();
+                        controller.DeletePokemon(pk);
+                        if (controller.FindPokemon(pk).pId.Equals(0))
+                        {
+                            MessageBox.Show($"Pokemon {pk} deleted");
+                            ShowSearch();
+                        }
                     }
                 }
+                else
+                {
+                    pk = Int32.Parse(dataGridView.CurrentRow.Cells["tId"].Value.ToString());
+                    currentTrainer = controller.FindTrainer(pk);
+                    DialogResult removeTrainerDR = MessageBox.Show($"Are you sure you want to delete {currentTrainer.tName} with Id: {currentTrainer.tId}?", "Remove Trainer", MessageBoxButtons.YesNo);
+                    if (removeTrainerDR == DialogResult.Yes)
+                    {
+                        controller.DeleteTrainer(pk);
+                        if (controller.FindTrainer(pk).tId.Equals(0))
+                        {
+                            Console.WriteLine("DEEELEEETE TRAINER");
+                            Console.WriteLine(controller.FindTrainer(pk).tId);
+                            MessageBox.Show($"Trainer {pk} deleted");
+                            ShowSearch();
+                        }
+                    }
+                }
+                //PopulateCbxTrainer();
             }
-            PopulateCbxTrainer();
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
+            
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            if (radioBtnPokemon.Checked == true)
+            try
             {
-                string name = textBoxName.Text;
-                string nickname = textBoxNickname.Text;
-                string type = textBoxType.Text;
-                int? trainerId = (int?)comboBoxTrainer.SelectedValue;
-                int level = (int)Math.Round(numericUpDownLevel.Value, 0);
-                try
+                if (radioBtnPokemon.Checked == true)
                 {
+                    string name = textBoxName.Text;
+                    string nickname = textBoxNickname.Text;
+                    string type = textBoxType.Text;
+                    int? trainerId = null;
+                    int level = (int)Math.Round(numericUpDownLevel.Value, 0);
                     controller.CreatePokemon(name, nickname, level, type, trainerId);
+                    MessageBox.Show("Pokemon was added");
+                    textBoxName.Text = "Name";
+                    textBoxNickname.Text = "Nickname";
+                    textBoxType.Text = "Type";
+                    numericUpDownLevel.Value = 1;                   
                 }
-                catch (Exception ex)
+                else if (radioBtnTrainer.Checked == true)
                 {
-                    String errormessage = error.GetMessage(ex);
-                    ErrorMessagebox(errormessage);
-                }
-            }
-            else if (radioBtnTrainer.Checked == true)
-            {
-                string name = textBoxName.Text;
-                int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
-                try
-                {
+                    string name = textBoxName.Text;
+                    int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
                     controller.CreateTrainer(name, nbrOfBadges);
                 }
-                catch (Exception ex)
-                {
-                    String errormessage = error.GetMessage(ex);
-                    ErrorMessagebox(errormessage);
-                }
+                //PopulateCbxTrainer();
             }
-            PopulateCbxTrainer();
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -196,12 +202,13 @@ namespace DesktopApp1
         {
 
         }
-        private void PopulateCbxTrainer()
+        /*private void PopulateCbxTrainer()
         {
             comboBoxTrainer.DataSource = controller.FindAllTrainers();
             comboBoxTrainer.DisplayMember = "tName";
             comboBoxTrainer.ValueMember = "tId";
-        }
+
+        }*/
 
 
         private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
