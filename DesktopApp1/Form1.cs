@@ -121,43 +121,35 @@ namespace DesktopApp1
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            if (radioBtnPokemon.Checked == true)
+            try
             {
-                string name = textBoxName.Text;
-                string nickname = textBoxNickname.Text;
-                string type = textBoxType.Text;
-                int? trainerId = null;
-                int level = (int)Math.Round(numericUpDownLevel.Value, 0);
-                try
+                if (radioBtnPokemon.Checked == true)
                 {
+                    string name = textBoxName.Text;
+                    string nickname = textBoxNickname.Text;
+                    string type = textBoxType.Text;
+                    int? trainerId = null;
+                    int level = (int)Math.Round(numericUpDownLevel.Value, 0);
                     controller.CreatePokemon(name, nickname, level, type, trainerId);
                     MessageBox.Show("Pokemon was added");
                     textBoxName.Text = "Name";
                     textBoxNickname.Text = "Nickname";
                     textBoxType.Text = "Type";
-                    numericUpDownLevel.Value = 1;
+                    numericUpDownLevel.Value = 1;                   
                 }
-                catch (Exception ex)
+                else if (radioBtnTrainer.Checked == true)
                 {
-                    String errormessage = error.GetMessage(ex);
-                    ErrorMessagebox(errormessage);
-                }
-            }
-            else if (radioBtnTrainer.Checked == true)
-            {
-                string name = textBoxName.Text;
-                int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
-                try
-                {
+                    string name = textBoxName.Text;
+                    int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
                     controller.CreateTrainer(name, nbrOfBadges);
                 }
-                catch (Exception ex)
-                {
-                    String errormessage = error.GetMessage(ex);
-                    ErrorMessagebox(errormessage);
-                }
+                //PopulateCbxTrainer();
             }
-            //PopulateCbxTrainer();
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
