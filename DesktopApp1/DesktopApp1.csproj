@@ -109,6 +109,9 @@
     <Compile Include="read_all_trainer_Result.cs">
       <DependentUpon>ERModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="read_pokemon_trainer_Result.cs">
+      <DependentUpon>ERModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="read_pokémon_Result.cs">
       <DependentUpon>ERModel.tt</DependentUpon>
     </Compile>

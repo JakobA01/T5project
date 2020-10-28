@@ -22,9 +22,9 @@ namespace DesktopApp1
         public Form1()
         {
             InitializeComponent();
-            ShowSearch();
+            //ShowSearch();
             PopulateCbxTrainer();
-            
+
         }
         private void ErrorMessagebox(String errormessage)
         {
@@ -64,7 +64,7 @@ namespace DesktopApp1
         {
             FormTrainer formTrainer = new FormTrainer(this);
             formTrainer.ShowDialog();
-            
+
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
@@ -84,9 +84,9 @@ namespace DesktopApp1
                 {
                     controller.DeletePokemon(pk);
                     if (controller.FindPokemon(pk).pId.Equals(0))
-                    {
-                        ShowSearch();
+                    {                       
                         MessageBox.Show($"Pokemon {pk} deleted");
+                        ShowSearch();
                     }
                 }
             }
@@ -101,9 +101,9 @@ namespace DesktopApp1
                     if (controller.FindTrainer(pk).tId.Equals(0))
                     {
                         Console.WriteLine("DEEELEEETE TRAINER");
-                        Console.WriteLine(controller.FindTrainer(pk).tId);
-                        ShowSearch();
+                        Console.WriteLine(controller.FindTrainer(pk).tId);                        
                         MessageBox.Show($"Trainer {pk} deleted");
+                        ShowSearch();
                     }
                 }
             }
@@ -112,39 +112,59 @@ namespace DesktopApp1
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            string name = textBoxName.Text;
-            string nickname = textBoxNickname.Text;
-            string type = textBoxType.Text;
-            int? trainerId = (int?)comboBoxTrainer.SelectedValue;
-            int level = (int)Math.Round(numericUpDownLevel.Value, 0);
+            if (radioBtnPokemon.Checked == true)
+            {
+                string name = textBoxName.Text;
+                string nickname = textBoxNickname.Text;
+                string type = textBoxType.Text;
+                int? trainerId = (int?)comboBoxTrainer.SelectedValue;
+                int level = (int)Math.Round(numericUpDownLevel.Value, 0);
+                try
+                {
+                    controller.CreatePokemon(name, nickname, level, type, trainerId);
+                }
+                catch (Exception ex)
+                {
+                    String errormessage = error.GetMessage(ex);
+                    ErrorMessagebox(errormessage);
+                }
+            }
+            else if (radioBtnTrainer.Checked == true)
+            {
+                string name = textBoxName.Text;
+                int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
+                try
+                {
+                    controller.CreateTrainer(name, nbrOfBadges);
+                }
+                catch (Exception ex)
+                {
+                    String errormessage = error.GetMessage(ex);
+                    ErrorMessagebox(errormessage);
+                }
+            }
+            PopulateCbxTrainer();
+        }
 
-
-            controller.CreatePokemon(name, nickname, level, type, trainerId);
-            
-            Console.WriteLine(name + nickname + type);
-            Console.WriteLine(trainerId);
-            Console.WriteLine(level);
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
             try
             {
-                controller.CreatePokemon(name, nickname, level, type, trainerId);
+                ShowSearch();
             }
             catch (Exception ex)
             {
                 String errormessage = error.GetMessage(ex);
                 ErrorMessagebox(errormessage);
-            }            
-        }
-
-        private void ButtonSearch_Click(object sender, EventArgs e)
-        {
-            ShowSearch();
+            }
+            
         }
 
         private void ShowSearch()
         {
-            dataGridView.DataSource = null;
-            if (radioBtnSearchPokemon.Checked == true)
+            try
             {
+<<<<<<< HEAD
                 while (dataGridView.Rows.Count > 0)
                 {
                     dataGridView.Rows.RemoveAt(0);
@@ -155,10 +175,33 @@ namespace DesktopApp1
                 dataGridView.Columns["pId"].HeaderText = "PokémonId";
                 dataGridView.Columns["tId"].HeaderText = "TrainerId";
                 Console.WriteLine("Showsearch done");
+=======
+                if (radioBtnSearchPokemon.Checked == true)
+                {
+                    dataGridView.DataSource = controller.FindAllPokemons();
+                    dataGridView.Columns.Remove("Trainer");
+                    dataGridView.Columns["pId"].HeaderText = "Pokémon ID";
+                    dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                    dataGridView.Columns["pLevel"].HeaderText = "Level";
+                    dataGridView.Columns["pType"].HeaderText = "Type";
+                    dataGridView.Columns["pName"].HeaderText = "Name";
+                    dataGridView.Columns["nickName"].HeaderText = "Nickname";
+>>>>>>> master
 
+                }
+                else if (radioBtnSearchTrainer.Checked == true)
+                {
+                    dataGridView.DataSource = controller.FindAllTrainers();
+                    dataGridView.Columns.Remove("Pokémon");
+                    dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                    dataGridView.Columns["nbrOfBadges"].HeaderText = "Badges";
+                    dataGridView.Columns["tName"].HeaderText = "Name";
+                }
+                dataGridView.ClearSelection();
             }
-            else if (radioBtnSearchTrainer.Checked == true)
+            catch (Exception ex)
             {
+<<<<<<< HEAD
                 while (dataGridView.Rows.Count > 0)
                 {
                     dataGridView.Rows.RemoveAt(0);
@@ -166,8 +209,11 @@ namespace DesktopApp1
                 dataGridView.DataSource = controller.FindAllTrainers();
                 dataGridView.Columns.Remove("Pokémon");
                 dataGridView.Columns["tId"].HeaderText = "TrainerId";
+=======
+                throw ex;
+>>>>>>> master
             }
-            dataGridView.ClearSelection();
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -232,6 +278,28 @@ namespace DesktopApp1
                 pk = Int32.Parse(dataGridView.CurrentRow.Cells[1].Value.ToString());
                 currentTrainer = controller.FindTrainer(pk);
                 currentPokemon = new Pokémon();
+            }
+        }
+
+        private void RadioBtnPokemon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnPokemon.Checked == true)
+            {
+                textBoxNickname.Visible = true;
+                textBoxType.Visible = true;
+                numericUpDownLevel.Maximum = 100;
+                numericUpDownLevel.Minimum = 0;
+            }
+        }
+
+        private void RadioBtnTrainer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnTrainer.Checked == true)
+            {
+                textBoxNickname.Visible = false;
+                textBoxType.Visible = false;
+                numericUpDownLevel.Maximum = 8;
+                numericUpDownLevel.Minimum = 0;
             }
         }
     }

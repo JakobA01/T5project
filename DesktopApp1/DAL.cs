@@ -17,7 +17,8 @@ namespace DesktopApp1
         {
             try
             {
-                projectEntities.create_trainer(tName, nbrOfBadges);
+                ProjectEntities entity = new ProjectEntities();
+                entity.create_trainer(tName, nbrOfBadges);               
             }
             catch (Exception e)
             {
@@ -27,8 +28,9 @@ namespace DesktopApp1
         public void CreatePokemon (string pName, string nickName, int pLevel, string pType, int? tId)
         {
             try
-            {                
-                projectEntities.create_pokémon(pName, nickName, pLevel, pType, tId);
+            {
+                ProjectEntities entity = new ProjectEntities();
+                entity.create_pokémon(pName, nickName, pLevel, pType, tId);
             }
             catch (Exception e)
             {
@@ -39,7 +41,8 @@ namespace DesktopApp1
         {
             try
             {
-                projectEntities.update_pokémon(pName, nickName, pLevel, pType, tId, pId);
+                ProjectEntities entity = new ProjectEntities();
+                entity.update_pokémon(pName, nickName, pLevel, pType, tId, pId);
             }
             catch (Exception e)
             {
@@ -50,7 +53,8 @@ namespace DesktopApp1
         {
             try
             {
-                projectEntities.update_trainer(tName, nbrOfBadges, tId);
+                ProjectEntities entity = new ProjectEntities();
+                entity.update_trainer(tName, nbrOfBadges, tId);
             }
             catch (Exception e)
             {
@@ -61,7 +65,8 @@ namespace DesktopApp1
         {
             try
             {
-                return projectEntities.read_pokemon_trainer(tId).ToList();
+                ProjectEntities entity = new ProjectEntities();
+                return entity.read_pokemon_trainer(tId).ToList();
             }
             catch (Exception e)
             {
@@ -72,7 +77,9 @@ namespace DesktopApp1
         {
             try
             {
-                projectEntities.delete_trainer(tId);
+                ProjectEntities entity = new ProjectEntities();
+                entity.delete_trainer(tId);
+                //projectEntities.SaveChanges();
             }
             catch (Exception e)
             {
@@ -83,7 +90,8 @@ namespace DesktopApp1
         {
             try
             {
-                projectEntities.delete_pokémon(pId);
+                ProjectEntities entity = new ProjectEntities();
+                entity.delete_pokémon(pId);
             }
             catch (Exception e)
             {
@@ -94,7 +102,8 @@ namespace DesktopApp1
         {
             try
             {
-                return projectEntities.read_trainer(tId).ToList();
+                ProjectEntities entity = new ProjectEntities();
+                return entity.read_trainer(tId).ToList();
             }
             catch (Exception e)
             {
@@ -105,7 +114,8 @@ namespace DesktopApp1
         {
             try
             {
-                return projectEntities.read_pokémon(pId).ToList();
+                ProjectEntities entity = new ProjectEntities();
+                return entity.read_pokémon(pId).ToList();
             }
             catch (Exception e)
             {
@@ -116,7 +126,8 @@ namespace DesktopApp1
         {
             try
             {
-                return projectEntities.read_all_pokémon().ToList();
+                ProjectEntities entity = new ProjectEntities();
+                return entity.read_all_pokémon().ToList();
             }
             catch (Exception e)
             {
@@ -127,7 +138,8 @@ namespace DesktopApp1
         {
             try
             {
-                return projectEntities.read_all_trainer().ToList();
+                ProjectEntities entity = new ProjectEntities();
+                return entity.read_all_trainer().ToList();
             }
             catch (Exception e)
             {

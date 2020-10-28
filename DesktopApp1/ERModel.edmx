@@ -172,7 +172,7 @@
             <Parameter Name="tId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="read_pokemon_trainer" EntitySet="Pokémon" ReturnType="Collection(ProjectModel.Pokémon)">
-            <Parameter Name="tId" Mode="In" Type="Int32" />
+          <Parameter Name="tId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="read_all_pokémon_Result">
