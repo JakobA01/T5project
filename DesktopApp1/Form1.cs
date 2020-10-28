@@ -23,7 +23,7 @@ namespace DesktopApp1
         {
             InitializeComponent();
             //ShowSearch();
-            PopulateCbxTrainer();
+            //PopulateCbxTrainer();
 
         }
         private void ErrorMessagebox(String errormessage)
@@ -107,7 +107,7 @@ namespace DesktopApp1
                     }
                 }
             }
-            PopulateCbxTrainer();
+            //PopulateCbxTrainer();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -117,11 +117,16 @@ namespace DesktopApp1
                 string name = textBoxName.Text;
                 string nickname = textBoxNickname.Text;
                 string type = textBoxType.Text;
-                int? trainerId = (int?)comboBoxTrainer.SelectedValue;
+                int? trainerId = null;
                 int level = (int)Math.Round(numericUpDownLevel.Value, 0);
                 try
                 {
                     controller.CreatePokemon(name, nickname, level, type, trainerId);
+                    MessageBox.Show("Pokemon was added");
+                    textBoxName.Text = "Name";
+                    textBoxNickname.Text = "Nickname";
+                    textBoxType.Text = "Type";
+                    numericUpDownLevel.Value = 1;
                 }
                 catch (Exception ex)
                 {
@@ -143,7 +148,7 @@ namespace DesktopApp1
                     ErrorMessagebox(errormessage);
                 }
             }
-            PopulateCbxTrainer();
+            //PopulateCbxTrainer();
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -196,12 +201,13 @@ namespace DesktopApp1
         {
 
         }
-        private void PopulateCbxTrainer()
+        /*private void PopulateCbxTrainer()
         {
             comboBoxTrainer.DataSource = controller.FindAllTrainers();
             comboBoxTrainer.DisplayMember = "tName";
             comboBoxTrainer.ValueMember = "tId";
-        }
+
+        }*/
 
 
         private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
