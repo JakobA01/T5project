@@ -24,7 +24,7 @@ namespace DesktopApp1
             InitializeComponent();
             ShowSearch();
             PopulateCbxTrainer();
-            
+
         }
         private void ErrorMessagebox(String errormessage)
         {
@@ -64,7 +64,7 @@ namespace DesktopApp1
         {
             FormTrainer formTrainer = new FormTrainer(this);
             formTrainer.ShowDialog();
-            
+
         }
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
@@ -112,27 +112,45 @@ namespace DesktopApp1
 
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            string name = textBoxName.Text;
-            string nickname = textBoxNickname.Text;
-            string type = textBoxType.Text;
-            int? trainerId = (int?)comboBoxTrainer.SelectedValue;
-            int level = (int)Math.Round(numericUpDownLevel.Value, 0);
-
-
-            controller.CreatePokemon(name, nickname, level, type, trainerId);
-            
-            Console.WriteLine(name + nickname + type);
-            Console.WriteLine(trainerId);
-            Console.WriteLine(level);
-            try
+            if (radioBtnPokemon.Checked == true)
             {
+                string name = textBoxName.Text;
+                string nickname = textBoxNickname.Text;
+                string type = textBoxType.Text;
+                int? trainerId = (int?)comboBoxTrainer.SelectedValue;
+                int level = (int)Math.Round(numericUpDownLevel.Value, 0);
+
+
                 controller.CreatePokemon(name, nickname, level, type, trainerId);
+
+                Console.WriteLine(name + nickname + type);
+                Console.WriteLine(trainerId);
+                Console.WriteLine(level);
+                try
+                {
+                    controller.CreatePokemon(name, nickname, level, type, trainerId);
+                }
+                catch (Exception ex)
+                {
+                    String errormessage = error.GetMessage(ex);
+                    ErrorMessagebox(errormessage);
+                }
             }
-            catch (Exception ex)
+            else if (radioBtnTrainer.Checked == true)
             {
-                String errormessage = error.GetMessage(ex);
-                ErrorMessagebox(errormessage);
-            }            
+                string name = textBoxName.Text;
+                int nbrOfBadges = (int)Math.Round(numericUpDownLevel.Value, 0);
+                try
+                {
+                    controller.CreateTrainer(name, nbrOfBadges);
+                }
+                catch (Exception ex)
+                {
+                    String errormessage = error.GetMessage(ex);
+                    ErrorMessagebox(errormessage);
+                }
+            }
+            PopulateCbxTrainer();
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -222,6 +240,28 @@ namespace DesktopApp1
                 pk = Int32.Parse(dataGridView.CurrentRow.Cells[1].Value.ToString());
                 currentTrainer = controller.FindTrainer(pk);
                 currentPokemon = new Pokémon();
+            }
+        }
+
+        private void RadioBtnPokemon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnPokemon.Checked == true)
+            {
+                textBoxNickname.Visible = true;
+                textBoxType.Visible = true;
+                numericUpDownLevel.Maximum = 100;
+                numericUpDownLevel.Minimum = 0;
+            }
+        }
+
+        private void RadioBtnTrainer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioBtnTrainer.Checked == true)
+            {
+                textBoxNickname.Visible = false;
+                textBoxType.Visible = false;
+                numericUpDownLevel.Maximum = 8;
+                numericUpDownLevel.Minimum = 0;
             }
         }
     }

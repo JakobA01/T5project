@@ -13,10 +13,18 @@ namespace DesktopApp1
     public partial class FormTrainer : Form
     {
         Form1 form;
+        Controller controller = new Controller();
+        ErrorHandling error = new ErrorHandling();
         public FormTrainer(Form1 form1)
         {
             InitializeComponent();
             form = form1;
+        }
+        private void ErrorMessagebox(String errormessage)
+        {
+            String caption = "Error occured";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(errormessage, caption, buttons);
         }
 
         private void TextBoxNickname_TextChanged(object sender, EventArgs e)
@@ -39,5 +47,22 @@ namespace DesktopApp1
 
         }
 
+        private void ButtonUpdateTrainerFT_Click(object sender, EventArgs e)
+        {
+            int tId = Int32.Parse(textBoxTrainerIdFT.Text);
+            int nbrOfBadges = (int)Math.Round(numericUpDownNbrBadgesFT.Value);
+            string tName = textBoxNameFT.Text;
+
+            try
+            {
+                controller.UpdateTrainer(tName, nbrOfBadges, tId);
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }
+
+        }
     }
 }
