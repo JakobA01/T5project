@@ -126,6 +126,7 @@ namespace DesktopApp1
             this.radioBtnPokemon.TabStop = true;
             this.radioBtnPokemon.Text = "Pokémon";
             this.radioBtnPokemon.UseVisualStyleBackColor = true;
+            this.radioBtnPokemon.CheckedChanged += new System.EventHandler(this.RadioBtnPokemon_CheckedChanged_1);
             // 
             // radioBtnTrainer
             // 
@@ -136,6 +137,7 @@ namespace DesktopApp1
             this.radioBtnTrainer.TabIndex = 10;
             this.radioBtnTrainer.Text = "Trainer";
             this.radioBtnTrainer.UseVisualStyleBackColor = true;
+            this.radioBtnTrainer.CheckedChanged += new System.EventHandler(this.RadioBtnTrainer_CheckedChanged_1);
             // 
             // buttonAdd
             // 

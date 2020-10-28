@@ -36,7 +36,20 @@ namespace DesktopApp1
 
         private void ButtonConfirm_Click(object sender, EventArgs e)
         {
-
+            AddPokemonToTrainer form = new AddPokemonToTrainer(this);
+            form.currentTID = Int32.Parse(textBoxTrainerIdFT.Text);
+            form.dataGridViewAddPokemon.DataSource = controller.FindAllPokemons();
+            form.FormClosing += new FormClosingEventHandler(this.AddPokemonToTrainer_FormClosing);
+            form.dataGridViewAddPokemon.Columns["pId"].HeaderText = "Pokémon ID";
+            form.dataGridViewAddPokemon.Columns["tId"].HeaderText = "Trainer ID";
+            form.dataGridViewAddPokemon.Columns["pLevel"].HeaderText = "Level";
+            form.dataGridViewAddPokemon.Columns["pType"].HeaderText = "Type";
+            form.dataGridViewAddPokemon.Columns["pName"].HeaderText = "Name";
+            form.dataGridViewAddPokemon.Columns["nickName"].HeaderText = "Nickname";
+            //AddPokemonToTrainer fp = new AddPokemonToTrainer(this);           
+            //fp.FormClosing += new FormClosingEventHandler(this.FormPokemon_FormClosing);
+            //fp.buttonUpdateFP.Click += new EventHandler(this.FormPokemon_FormClosing);
+            form.ShowDialog();
         }
 
         private void Label2_Click(object sender, EventArgs e)
@@ -78,6 +91,10 @@ namespace DesktopApp1
         }
 
         private void FormPokemon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            populateDataGrid();
+        }
+        private void AddPokemonToTrainer_FormClosing(object sender, FormClosingEventArgs e)
         {
             populateDataGrid();
         }
