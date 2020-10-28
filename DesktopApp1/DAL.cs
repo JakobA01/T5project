@@ -114,7 +114,14 @@ namespace DesktopApp1
         }
         public List<Pokémon> ReadAllPokemon()
         {
-            return projectEntities.read_all_pokémon().ToList();
+            try
+            {
+                return projectEntities.read_all_pokémon().ToList();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         public List<Trainer> ReadAllTrainer()
         {

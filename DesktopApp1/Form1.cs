@@ -15,6 +15,7 @@ namespace DesktopApp1
 {
     public partial class Form1 : Form
     {
+        ErrorHandling error = new ErrorHandling();
         Trainer currentTrainer;
         Pokémon currentPokemon;
         Controller controller = new Controller();
@@ -24,6 +25,12 @@ namespace DesktopApp1
             ShowSearch();
             PopulateCbxTrainer();
             
+        }
+        private void ErrorMessagebox(String errormessage)
+        {
+            String caption = "Error occured";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(errormessage, caption, buttons);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -67,7 +74,40 @@ namespace DesktopApp1
 
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
-
+            int pk;
+            if (dataGridView.Columns.Contains("pId"))
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells["pId"].Value.ToString());
+                currentPokemon = controller.FindPokemon(pk);
+                DialogResult removePokemonDR = MessageBox.Show($"Are you sure you want to delete {currentPokemon.pName} with Id: {currentPokemon.pId}?", "Remove Pokémon", MessageBoxButtons.YesNo);
+                if (removePokemonDR == DialogResult.Yes)
+                {
+                    controller.DeletePokemon(pk);
+                    if (controller.FindPokemon(pk).pId.Equals(0))
+                    {
+                        ShowSearch();
+                        MessageBox.Show($"Pokemon {pk} deleted");
+                    }
+                }
+            }
+            else
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells["tId"].Value.ToString());
+                currentTrainer = controller.FindTrainer(pk);
+                DialogResult removeTrainerDR = MessageBox.Show($"Are you sure you want to delete {currentTrainer.tName} with Id: {currentTrainer.tId}?", "Remove Trainer", MessageBoxButtons.YesNo);
+                if (removeTrainerDR == DialogResult.Yes)
+                {
+                    controller.DeleteTrainer(pk);
+                    if (controller.FindTrainer(pk).tId.Equals(0))
+                    {
+                        Console.WriteLine("DEEELEEETE TRAINER");
+                        Console.WriteLine(controller.FindTrainer(pk).tId);
+                        ShowSearch();
+                        MessageBox.Show($"Trainer {pk} deleted");
+                    }
+                }
+            }
+            PopulateCbxTrainer();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -77,12 +117,22 @@ namespace DesktopApp1
             string type = textBoxType.Text;
             int? trainerId = (int?)comboBoxTrainer.SelectedValue;
             int level = (int)Math.Round(numericUpDownLevel.Value, 0);
-            Console.WriteLine(name + nickname + type);
-            Console.WriteLine(trainerId);
-            Console.WriteLine(level);
+
 
             controller.CreatePokemon(name, nickname, level, type, trainerId);
             
+            Console.WriteLine(name + nickname + type);
+            Console.WriteLine(trainerId);
+            Console.WriteLine(level);
+            try
+            {
+                controller.CreatePokemon(name, nickname, level, type, trainerId);
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
+            }            
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -92,7 +142,7 @@ namespace DesktopApp1
 
         private void ShowSearch()
         {
-
+            dataGridView.DataSource = null;
             if (radioBtnSearchPokemon.Checked == true)
             {
                 dataGridView.DataSource = controller.FindAllPokemons();
@@ -107,6 +157,7 @@ namespace DesktopApp1
                 dataGridView.Columns.Remove("Pokémon");
                 dataGridView.Columns["tId"].HeaderText = "TrainerId";
             }
+            dataGridView.ClearSelection();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -132,7 +183,6 @@ namespace DesktopApp1
         private void UpdateWindowOpen()
         {
             int pk;
-            string type;
             if (dataGridView.ColumnCount > 3)
             {
                 pk = Int32.Parse(dataGridView.CurrentRow.Cells[3].Value.ToString());
@@ -156,6 +206,22 @@ namespace DesktopApp1
                 ft.dataGridView1.DataSource = controller.FindPokemonsTrainer(pk);
 
                 ft.ShowDialog();
+            }
+        }
+        public void CurrentTarget()
+        {
+            int pk;
+            if (dataGridView.ColumnCount > 3)
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells[3].Value.ToString());
+                currentPokemon = controller.FindPokemon(pk);
+                currentTrainer = new Trainer();
+            }
+            else if (dataGridView.ColumnCount < 3)
+            {
+                pk = Int32.Parse(dataGridView.CurrentRow.Cells[1].Value.ToString());
+                currentTrainer = controller.FindTrainer(pk);
+                currentPokemon = new Pokémon();
             }
         }
     }
