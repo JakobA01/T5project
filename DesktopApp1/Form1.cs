@@ -164,18 +164,6 @@ namespace DesktopApp1
         {
             try
             {
-<<<<<<< HEAD
-                while (dataGridView.Rows.Count > 0)
-                {
-                    dataGridView.Rows.RemoveAt(0);
-                }
-                Console.WriteLine("Showsearch yea");
-                dataGridView.DataSource = controller.FindAllPokemons();
-                dataGridView.Columns.Remove("Trainer");
-                dataGridView.Columns["pId"].HeaderText = "PokémonId";
-                dataGridView.Columns["tId"].HeaderText = "TrainerId";
-                Console.WriteLine("Showsearch done");
-=======
                 if (radioBtnSearchPokemon.Checked == true)
                 {
                     dataGridView.DataSource = controller.FindAllPokemons();
@@ -186,8 +174,6 @@ namespace DesktopApp1
                     dataGridView.Columns["pType"].HeaderText = "Type";
                     dataGridView.Columns["pName"].HeaderText = "Name";
                     dataGridView.Columns["nickName"].HeaderText = "Nickname";
->>>>>>> master
-
                 }
                 else if (radioBtnSearchTrainer.Checked == true)
                 {
@@ -201,17 +187,7 @@ namespace DesktopApp1
             }
             catch (Exception ex)
             {
-<<<<<<< HEAD
-                while (dataGridView.Rows.Count > 0)
-                {
-                    dataGridView.Rows.RemoveAt(0);
-                }
-                dataGridView.DataSource = controller.FindAllTrainers();
-                dataGridView.Columns.Remove("Pokémon");
-                dataGridView.Columns["tId"].HeaderText = "TrainerId";
-=======
                 throw ex;
->>>>>>> master
             }
             
         }
