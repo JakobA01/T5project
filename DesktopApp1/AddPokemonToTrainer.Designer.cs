@@ -45,6 +45,7 @@
             this.dataGridViewAddPokemon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAddPokemon.Size = new System.Drawing.Size(775, 381);
             this.dataGridViewAddPokemon.TabIndex = 0;
+            this.dataGridViewAddPokemon.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewAddPokemon_CellDoubleClick);
             this.dataGridViewAddPokemon.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridViewAddPokemon_DataBindingComplete_1);
             // 
             // btnAddToTrainer

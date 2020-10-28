@@ -33,6 +33,21 @@ namespace DesktopApp1
 
         private void BtnAddToTrainer_Click(object sender, EventArgs e)
         {
+            AddPokemonToT();        
+        }
+        private void ErrorMessagebox(String errormessage)
+        {
+            String caption = "Error occured";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBox.Show(errormessage, caption, buttons);
+        }
+
+        private void DataGridViewAddPokemon_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AddPokemonToT();
+        }
+        private void AddPokemonToT()
+        {
             int pk;
             pk = Int32.Parse(dataGridViewAddPokemon.CurrentRow.Cells["pId"].Value.ToString());
             try
@@ -40,20 +55,21 @@ namespace DesktopApp1
                 currentPokemon = controller.FindPokemon(pk);
                 controller.UpdatePokemon(currentPokemon.pName, currentPokemon.nickname, pk, currentPokemon.pLevel, currentPokemon.pType, currentTID);
                 dataGridViewAddPokemon.DataSource = controller.FindAllPokemons();
+                dataGridViewAddPokemon.ClearSelection();
+                foreach (DataGridViewRow row in dataGridViewAddPokemon.Rows)
+                {
+                    if (row.Cells["pId"].Value.ToString().Equals(pk.ToString()))
+                    {
+                        row.Selected = true;
+                    }
+                }
                 MessageBox.Show("Pokemon added");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string errormessage = error.GetMessage(ex);
                 ErrorMessagebox(errormessage);
             }
-            
-        }
-        private void ErrorMessagebox(String errormessage)
-        {
-            String caption = "Error occured";
-            MessageBoxButtons buttons = MessageBoxButtons.OK;
-            MessageBox.Show(errormessage, caption, buttons);
         }
     }
 }
