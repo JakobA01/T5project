@@ -275,7 +275,6 @@ namespace DesktopApp1
 
         #endregion
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxType;
         private System.Windows.Forms.TextBox textBoxNickname;
@@ -292,6 +291,7 @@ namespace DesktopApp1
         private System.Windows.Forms.RadioButton radioBtnSearchPokemon;
         private System.Windows.Forms.Panel panelRadioBtnSearch;
         private System.Windows.Forms.Panel panelRadioBtn;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
 
