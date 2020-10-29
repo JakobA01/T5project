@@ -111,6 +111,7 @@
             // 
             this.textBoxTrainerId.Location = new System.Drawing.Point(82, 129);
             this.textBoxTrainerId.Name = "textBoxTrainerId";
+            this.textBoxTrainerId.ReadOnly = true;
             this.textBoxTrainerId.Size = new System.Drawing.Size(153, 20);
             this.textBoxTrainerId.TabIndex = 114;
             this.textBoxTrainerId.Text = "Trainer";
