@@ -45,17 +45,25 @@ namespace DesktopApp1
 
         private void BtnRemoveFP_Click(object sender, EventArgs e)
         {
-            int pk;
-            pk = Int32.Parse(textBoxPidFP.Text);
-            DialogResult removePokemonDR = MessageBox.Show("Are you sure you want to delete this Pokémon?", "Remove Pokémon", MessageBoxButtons.YesNo);
-            if (removePokemonDR == DialogResult.Yes)
+            try
             {
-                controller.DeletePokemon(pk);
-                if (controller.FindPokemon(pk).pId.Equals(0))
+                int pk;
+                pk = Int32.Parse(textBoxPidFP.Text);
+                DialogResult removePokemonDR = MessageBox.Show("Are you sure you want to delete this Pokémon?", "Remove Pokémon", MessageBoxButtons.YesNo);
+                if (removePokemonDR == DialogResult.Yes)
                 {
-                    MessageBox.Show($"Pokemon {pk} deleted");
-                    this.Close();
+                    controller.DeletePokemon(pk);
+                    if (controller.FindPokemon(pk).pId.Equals(0))
+                    {
+                        MessageBox.Show($"Pokemon {pk} deleted");
+                        this.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                String errormessage = error.GetMessage(ex);
+                ErrorMessagebox(errormessage);
             }
         }
 

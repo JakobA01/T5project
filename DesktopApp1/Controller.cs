@@ -149,21 +149,29 @@ namespace DesktopApp1
 
         public string FindTrainerFromPokemon(int pId)
         {
-            string tmpString;
-            Pokémon p = FindPokemon(pId);
-            Console.WriteLine("FindTrainer from pokemon:");
-            Console.WriteLine(p.tId);
-            if(p.tId.GetValueOrDefault() != 0)
+            try
             {
-                Trainer t = FindTrainer((int)p.tId);
-                tmpString = t.tId.ToString();
-                Console.WriteLine(tmpString);
+                string tmpString;
+                Pokémon p = FindPokemon(pId);
+                Console.WriteLine("FindTrainer from pokemon:");
+                Console.WriteLine(p.tId);
+                if (p.tId.GetValueOrDefault() != 0)
+                {
+                    Trainer t = FindTrainer((int)p.tId);
+                    tmpString = t.tId.ToString();
+                    Console.WriteLine(tmpString);
+                }
+                else
+                {
+                    tmpString = "Stray pokémon";
+                }
+                return tmpString;
             }
-            else
+            catch (Exception e)
             {
-                tmpString = "Stray pokémon";
+                throw e;
             }
-            return tmpString;
+            
         }
         
     }
