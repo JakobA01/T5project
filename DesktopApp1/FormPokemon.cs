@@ -85,9 +85,15 @@ namespace DesktopApp1
             }         
             try
             {
-                controller.UpdatePokemon(pName, nickname, pId, pLevel, pType, tId);
-                MessageBox.Show("Pokémon successfully updated");
-                
+                if (controller.FindPokemon(pId).pId.Equals(0))
+                {
+                    MessageBox.Show("Pokémon does not exist. Perhaps another user has removed it");
+                }       
+                else
+                {
+                    controller.UpdatePokemon(pName, nickname, pId, pLevel, pType, tId);
+                    MessageBox.Show("Pokémon successfully updated");
+                }                              
             }
             catch (Exception ex)
             {

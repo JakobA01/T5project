@@ -13,7 +13,7 @@ namespace DesktopApp1
         //private readonly string connectionString = "Server=(local);Database=Project;Integrated security=true";
         ErrorHandling error = new ErrorHandling();
         ProjectEntities projectEntities = new ProjectEntities();
-        public void CreateTrainer(string tName, int nbrOfBadges)
+        public void CreateTrainer (string tName, int nbrOfBadges)
         {
             try
             {

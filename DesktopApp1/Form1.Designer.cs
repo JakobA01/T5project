@@ -34,7 +34,7 @@ namespace DesktopApp1
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxType = new System.Windows.Forms.TextBox();
             this.textBoxNickname = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.radioBtnPokemon = new System.Windows.Forms.RadioButton();
             this.radioBtnTrainer = new System.Windows.Forms.RadioButton();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -48,6 +48,7 @@ namespace DesktopApp1
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblLevel = new System.Windows.Forms.Label();
+            this.btnBattle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLevel)).BeginInit();
             this.panelRadioBtnSearch.SuspendLayout();
@@ -108,12 +109,12 @@ namespace DesktopApp1
             this.textBoxNickname.TabIndex = 7;
             this.textBoxNickname.Text = "Nickname";
             // 
-            // textBox5
+            // textBoxSearch
             // 
-            this.textBox5.Location = new System.Drawing.Point(619, 200);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(160, 20);
-            this.textBox5.TabIndex = 8;
+            this.textBoxSearch.Location = new System.Drawing.Point(619, 200);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(160, 20);
+            this.textBoxSearch.TabIndex = 8;
             // 
             // radioBtnPokemon
             // 
@@ -154,11 +155,6 @@ namespace DesktopApp1
             this.numericUpDownLevel.Location = new System.Drawing.Point(194, 145);
             this.numericUpDownLevel.Maximum = new decimal(new int[] {
             1000,
-            0,
-            0,
-            0});
-            this.numericUpDownLevel.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -259,12 +255,23 @@ namespace DesktopApp1
             this.lblLevel.TabIndex = 112;
             this.lblLevel.Text = "Level:";
             // 
+            // btnBattle
+            // 
+            this.btnBattle.Location = new System.Drawing.Point(402, 129);
+            this.btnBattle.Name = "btnBattle";
+            this.btnBattle.Size = new System.Drawing.Size(159, 45);
+            this.btnBattle.TabIndex = 113;
+            this.btnBattle.Text = "Demo battle";
+            this.btnBattle.UseVisualStyleBackColor = true;
+            this.btnBattle.Click += new System.EventHandler(this.BtnBattle_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gold;
             this.ClientSize = new System.Drawing.Size(901, 545);
+            this.Controls.Add(this.btnBattle);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -274,7 +281,7 @@ namespace DesktopApp1
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.numericUpDownLevel);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.textBoxNickname);
             this.Controls.Add(this.textBoxType);
             this.Controls.Add(this.textBoxName);
@@ -302,7 +309,7 @@ namespace DesktopApp1
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxType;
         private System.Windows.Forms.TextBox textBoxNickname;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.RadioButton radioBtnPokemon;
         private System.Windows.Forms.RadioButton radioBtnTrainer;
         private System.Windows.Forms.Button buttonAdd;
@@ -317,6 +324,7 @@ namespace DesktopApp1
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.Button btnBattle;
     }
 }
 
