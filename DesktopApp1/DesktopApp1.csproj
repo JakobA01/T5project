@@ -87,6 +87,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBattle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBattle.Designer.cs">
+      <DependentUpon>FormBattle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPokemon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBattle.resx">
+      <DependentUpon>FormBattle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPokemon.resx">
       <DependentUpon>FormPokemon.cs</DependentUpon>

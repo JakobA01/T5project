@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Timers;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -19,6 +21,7 @@ namespace DesktopApp1
         Trainer currentTrainer;
         Pokémon currentPokemon;
         Controller controller = new Controller();
+        System.Timers.Timer timer = new System.Timers.Timer(3000);
         public Form1()
         {
             InitializeComponent();
@@ -158,7 +161,11 @@ namespace DesktopApp1
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            ShowSearch();          
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            ShowSearch();
+            Console.WriteLine(stopWatch.ElapsedMilliseconds);
+            stopWatch.Stop();
         }
 
         private void ShowSearch()
@@ -167,23 +174,106 @@ namespace DesktopApp1
             {
                 if (radioBtnSearchPokemon.Checked == true)
                 {
-                    dataGridView.DataSource = controller.FindAllPokemons();
-                    dataGridView.Columns.Remove("Trainer");
-                    dataGridView.Columns["pId"].HeaderText = "Pokémon ID";
-                    dataGridView.Columns["tId"].HeaderText = "Trainer ID";
-                    dataGridView.Columns["pLevel"].HeaderText = "Level";
-                    dataGridView.Columns["pType"].HeaderText = "Type";
-                    dataGridView.Columns["pName"].HeaderText = "Name";
-                    dataGridView.Columns["nickName"].HeaderText = "Nickname";
+                    if (String.IsNullOrEmpty(textBoxSearch.Text.Trim()))
+                    {
+                        dataGridView.DataSource = controller.FindAllPokemons();
+                        dataGridView.Columns.Remove("Trainer");
+                        dataGridView.Columns["pId"].HeaderText = "Pokémon ID";
+                        dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                        dataGridView.Columns["pLevel"].HeaderText = "Level";
+                        dataGridView.Columns["pType"].HeaderText = "Type";
+                        dataGridView.Columns["pName"].HeaderText = "Name";
+                        dataGridView.Columns["nickName"].HeaderText = "Nickname";
+                    }
+                    else
+                    {
+                        List<Pokémon> pokémons = controller.FindAllPokemons();
+                        string search = textBoxSearch.Text.Trim();
+                        List<Pokémon> searchList = new List<Pokémon>();
+                        foreach (Pokémon p in pokémons)
+                        {
+                            if (p.pName.Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (p.nickname.Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (p.pId.ToString().Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (p.pLevel.ToString().Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (p.tId.ToString().Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (p.pType.Equals(search))
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (search.Equals("0") && !p.tId.HasValue)
+                            {
+                                searchList.Add(p);
+                            }
+                            else if (search.Equals("HasTrainer") && p.tId.HasValue)
+                            {
+                                searchList.Add(p);
+                            }
+                        }
+                        dataGridView.DataSource = searchList;
+                        dataGridView.Columns.Remove("Trainer");
+                        dataGridView.Columns["pId"].HeaderText = "Pokémon ID";
+                        dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                        dataGridView.Columns["pLevel"].HeaderText = "Level";
+                        dataGridView.Columns["pType"].HeaderText = "Type";
+                        dataGridView.Columns["pName"].HeaderText = "Name";
+                        dataGridView.Columns["nickName"].HeaderText = "Nickname";
+
+                    }
 
                 }
                 else if (radioBtnSearchTrainer.Checked == true)
                 {
-                    dataGridView.DataSource = controller.FindAllTrainers();
-                    dataGridView.Columns.Remove("Pokémon");
-                    dataGridView.Columns["tId"].HeaderText = "Trainer ID";
-                    dataGridView.Columns["nbrOfBadges"].HeaderText = "Badges";
-                    dataGridView.Columns["tName"].HeaderText = "Name";
+                    if (String.IsNullOrEmpty(textBoxSearch.Text.Trim()))
+                    {
+                        dataGridView.DataSource = controller.FindAllTrainers();
+                        dataGridView.Columns.Remove("Pokémon");
+                        dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                        dataGridView.Columns["nbrOfBadges"].HeaderText = "Badges";
+                        dataGridView.Columns["tName"].HeaderText = "Name";
+                    }
+                    else
+                    {
+                        List<Trainer> trainers = controller.FindAllTrainers();
+                        string search = textBoxSearch.Text.Trim();
+                        List<Trainer> searchList = new List<Trainer>();
+                        foreach (Trainer t in trainers)
+                        {
+                            if (t.tName.Equals(search))
+                            {
+                                searchList.Add(t);
+                            }
+                            else if (t.tId.ToString().Equals(search))
+                            {
+                                searchList.Add(t);
+                            }
+                            else if (t.nbrOfBadges.ToString().Equals(search))
+                            {
+                                searchList.Add(t);
+                            }
+                        }
+                        dataGridView.DataSource = searchList;
+                        dataGridView.Columns.Remove("Pokémon");
+                        dataGridView.Columns["tId"].HeaderText = "Trainer ID";
+                        dataGridView.Columns["nbrOfBadges"].HeaderText = "Badges";
+                        dataGridView.Columns["tName"].HeaderText = "Name";
+
+                    }
                 }
                 dataGridView.ClearSelection();
             }
@@ -222,7 +312,7 @@ namespace DesktopApp1
             {
                 int pk;
                 if (dataGridView.Columns.Contains("pId"))
-                {
+                {                   
                     pk = Int32.Parse(dataGridView.CurrentRow.Cells["pId"].Value.ToString());
                     currentPokemon = controller.FindPokemon(pk);
                     FormPokemon fp = new FormPokemon(this);
@@ -349,5 +439,36 @@ namespace DesktopApp1
                 System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rg6CiPI6h2g");
             }
         }
+
+        private void BtnBattle_Click(object sender, EventArgs e)
+        {
+            FormBattle fb = new FormBattle(this);
+            fb.progressBarYou.Value = 100;
+            fb.progressBarOpponent.Value = 100;
+            fb.lblBattleText.Text = "A wild machoke appeared!";
+            fb.lblOpponentHP.Text = "HP: 100%";
+            fb.lblYourHP.Text = "HP: 100%";
+            fb.ShowDialog();
+        }
+
+
+        /* private void DataGridView_ColumnSortModeChanged(object sender, DataGridViewColumnEventArgs e)
+         {
+
+         }
+
+         private void DataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+         {
+             DataGridViewColumn column = dataGridView.Columns[e.ColumnIndex];
+             dataGridView.Sort(column, ListSortDirection.Ascending);
+         }
+
+         private void DataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+         {
+             foreach(DataGridViewColumn column in dataGridView.Columns)
+             {
+                 column.SortMode = DataGridViewColumnSortMode.Programmatic;
+             }
+         }*/
     }
 }
